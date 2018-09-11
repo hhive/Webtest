@@ -37,6 +37,19 @@ public class SqlSrvDBConn {
         }
         return rs;
     }
+
+    /**
+     * insert
+     */
+    public void executeUpdate(String sql) {
+        try
+        {
+            stmt=conn.createStatement();
+            stmt.executeUpdate(sql);
+        }catch(SQLException e){
+            System.err.println("Data.executeUpdate: " + e.getMessage());
+        }
+    }
     //πÿ±’∂‘œÛ
     public void closeStmt()
     {
