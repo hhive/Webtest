@@ -13,9 +13,9 @@
         function delete1(){
             var sql = "delete from add1 where name = " + name;
             alert(name);
-            SqlSrvDB.executeUpdate(sql);
-            SqlSrvDB.closeStmt();
-            SqlSrvDB.closeConn();
+            // SqlSrvDB.executeUpdate(sql);
+            // SqlSrvDB.closeStmt();
+            // SqlSrvDB.closeConn();
         }
     </script>
 </head>
