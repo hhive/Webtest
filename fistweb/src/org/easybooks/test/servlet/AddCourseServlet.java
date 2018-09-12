@@ -21,7 +21,7 @@ public class AddCourseServlet extends HttpServlet {
         HttpSession session = request.getSession();
         Course course = null;
         course = (Course)session.getAttribute("course");
-        String sql = "insert into addCourse(courseName,credit,period,assessment,term,brief) valuses " +
+        String sql = "insert into addCourse(courseName,credit,period,assessment,term,brief) values " +
                 "('" + courseName + "','" + credit + "','" + period + "','" + assessment + "','" + term + "','" + brief + "')";
         srvDBConn.executeUpdate(sql);
         if (null == course) {

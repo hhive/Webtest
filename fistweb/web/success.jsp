@@ -15,8 +15,8 @@
     <p align="center">
         <%
             Course course = (Course)session.getAttribute("course");
-            out.print(course.getCourseName() + ": "
-                    + course.getCredit() + "," + course.getTerm() + "," + course.getAssessment());
+            out.print(course.getCourseName() + ":   "
+                    + course.getCredit() + "学分, 第" + course.getTerm() + "学期, " + course.getAssessment() + "课");
         %>
     </p>
 </body>
