@@ -1,4 +1,4 @@
-<%@ page import="org.easybooks.test.model.vo.Course" %><%--
+<%@ page import="org.easybooks.test.model.vo.test2.Course" %><%--
   Created by IntelliJ IDEA.
   User: JAX
   Date: 2018/9/12
@@ -17,6 +17,7 @@
             Course course = (Course)session.getAttribute("course");
             out.print(course.getCourseName() + ":   "
                     + course.getCredit() + "学分, 第" + course.getTerm() + "学期, " + course.getAssessment() + "课");
+            session.removeAttribute("course");
         %>
     </p>
 </body>

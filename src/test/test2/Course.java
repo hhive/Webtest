@@ -1,4 +1,4 @@
-package org.easybooks.test.model.vo;
+package org.easybooks.test.model.vo.test2;
 
 public class Course {
     private String courseName;

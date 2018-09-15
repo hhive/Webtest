@@ -4,14 +4,30 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
     <welcome-file-list>
-        <welcome-file>addCourse.jsp</welcome-file>
+        <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
     <servlet>
-        <servlet-name>addCourseServlet</servlet-name>
-        <servlet-class>org.easybooks.test.servlet.AddCourseServlet</servlet-class>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>org.easybooks.test.servlet.LoginServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>addCourseServlet</servlet-name>
-        <url-pattern>/addCourseServlet</url-pattern>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/Login_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>FindBookServlet</servlet-name>
+        <servlet-class>org.easybooks.test.servlet.FindBookServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FindBookServlet</servlet-name>
+        <url-pattern>/FindBook_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AddBookServlet</servlet-name>
+        <servlet-class>org.easybooks.test.servlet.AddBookServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddBookServlet</servlet-name>
+        <url-pattern>/AddBook_Servlet</url-pattern>
     </servlet-mapping>
 </web-app>

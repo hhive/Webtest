@@ -1,5 +1,5 @@
 <%@ page language="java" pageEncoding="gb2312" import="java.sql.*"%>
-<jsp:useBean id="SqlSrvDB" scope="page" class="org.easybooks.test.jdbc.SqlSrvDBConn" />
+<jsp:useBean id="SqlSrvDB" scope="page" class="SqlSrvDBConn" />
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html;charset=gb2312">
@@ -35,7 +35,7 @@
             {
                 //验证失败跳转到error.jsp
         %>
-                <jsp:forward page="error.jsp"/>
+                <jsp:forward page="../test2/error.jsp"/>
         <%
             }
         %>

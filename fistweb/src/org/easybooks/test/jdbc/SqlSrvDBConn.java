@@ -41,14 +41,17 @@ public class SqlSrvDBConn {
     /**
      * insert
      */
-    public void executeUpdate(String sql) {
+    public int executeUpdate(String sql) {
+        int rows = 0;
         try
         {
             stmt=conn.createStatement();
-            stmt.executeUpdate(sql);
+            rows = stmt.executeUpdate(sql);
+
         }catch(SQLException e){
             System.err.println("Data.executeUpdate: " + e.getMessage());
         }
+        return rows;
     }
     //πÿ±’∂‘œÛ
     public void closeStmt()
