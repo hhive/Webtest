@@ -7,16 +7,19 @@
 <struts>
     <package name="default" extends="struts-default">
         <action name="login" class="action.LoginAction">
-            <result name="success">main.jsp</result>
-            <result name="error">index.jsp</result>
+            <result name="success">/main.jsp</result>
+            <result name="error">/index.jsp</result>
+            <result name="input">/index.jsp</result>
         </action>
         <action name="addBook" class="action.AddBookAction">
             <result name="success">addSuccess.jsp</result>
             <result name="error">addError.jsp</result>
+            <result name="input">/addBook.jsp</result>
         </action>
         <action name="findBook" class="action.FindBookAction">
             <result name="success">findSuccess.jsp</result>
             <result name="error">findError.jsp</result>
+            <result name="input">/findBook.jsp</result>
         </action>
     </package>
 </struts>

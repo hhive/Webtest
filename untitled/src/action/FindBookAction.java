@@ -1,13 +1,10 @@
 package action;
 
-import com.opensymphony.xwork2.ActionContext;
 import dao.BookDao;
 import model.Book;
-
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
+
 
 public class FindBookAction {
     public List<Book> getBookList() {
@@ -19,7 +16,7 @@ public class FindBookAction {
     }
 
     List<Book> bookList;
-    private Book book;
+//    private Book book;
     private String title;
 
     public String getTitle() {
@@ -30,13 +27,13 @@ public class FindBookAction {
         this.title = title;
     }
 
-    public Book getBook() {
-        return book;
-    }
-
-    public void setBook(Book book) {
-        this.book = book;
-    }
+//    public Book getBook() {
+//        return book;
+//    }
+//
+//    public void setBook(Book book) {
+//        this.book = book;
+//    }
 
     public String execute() {
 //        ActionContext context = ActionContext.getContext();
@@ -44,11 +41,11 @@ public class FindBookAction {
         bookList = new BookDao().find(title);
         //session.put("bookList",bookList);
 
-        Iterator iterator = bookList.iterator();
-        while (iterator.hasNext()) {
-            book = (Book)iterator.next();
-            System.out.println(book.getTitle() + "," + book.getPrice());
-        }
+//        Iterator iterator = bookList.iterator();
+//        while (iterator.hasNext()) {
+//            book = (Book)iterator.next();
+//            System.out.println(book.getTitle() + "," + book.getPrice());
+//        }
 
         if (0 != bookList.size()) {
             return "success";

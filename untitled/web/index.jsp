@@ -10,11 +10,17 @@
 <html>
 <head><title>登录</title></head>
 <body>
-<form action="login" method="post">
-  工号：<input type="text" name="username" size="20" /><br>
+<s:form action="login" method="post">
+  姓名：<input type="text" name="username" size="20" /><br>
+  <s:fielderror>
+    <s:param>username</s:param>
+  </s:fielderror>
   密码：<input type="password" name="password" size="20" /><br>
+  <s:fielderror>
+    <s:param>password</s:param>
+  </s:fielderror>
   <input type="submit" value="登录" />
   <input type="reset" value="重置" />
-</form>
+</s:form>
 </body>
 </html>

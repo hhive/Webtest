@@ -1,9 +1,10 @@
 package action;
 
+import com.opensymphony.xwork2.ActionSupport;
 import dao.BookDao;
 import model.Book;
 
-public class AddBookAction {
+public class AddBookAction extends ActionSupport {
     //    private String title;
 //    private int price;
     private Book book;
@@ -24,6 +25,7 @@ public class AddBookAction {
             return "error";
         }
     }
+
 
 
 }

@@ -1,13 +1,14 @@
 package action;
 
 import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
 import dao.UserDao;
 import model.Book;
 import model.User;
 
 import java.util.Map;
 
-public class LoginAction {
+public class LoginAction extends ActionSupport {
 
 	public User getUser() {
 		return user;
@@ -53,4 +54,17 @@ public class LoginAction {
 			return "success";
 		}
 	}
+
+    public void validate() {
+	    System.out.println("validate()");
+        if (null == username || username.equals("")) {
+            addFieldError("username", "姓名不能为空");
+        }
+        if (null == password || password.equals("")) {
+            addFieldError("password", "密码不能为空");
+        }
+//        if (null == user.getUsername() || user.getUsername().equals("")) {
+//            addFieldError("user.username", "姓名不能为空");
+//        }
+    }
 }

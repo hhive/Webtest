@@ -12,7 +12,15 @@
     <title>ADD</title>
 </head>
 <body>
-<form action = "addBook" method="post">
+<%--<s:fielderror name="book.title"/>--%>
+<%--<s:fielderror name="book.price"/>--%>
+<s:fielderror>
+    <s:param>book.title</s:param>
+</s:fielderror>
+<s:fielderror>
+    <s:param>book.price</s:param>
+</s:fielderror>
+<s:form action = "addBook" method="post" validate="true">
     <table>
         <caption>添加书籍</caption>
         <tr>
@@ -30,6 +38,6 @@
     </table>
     <input type="submit" value="提交"/>
     <input type="reset" value="重置"/>
-</form>
+</s:form>
 </body>
 </html>

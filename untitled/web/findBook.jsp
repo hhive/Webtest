@@ -12,10 +12,13 @@
     <title>findBook</title>
 </head>
 <body>
-    <form action="findBook" method="post">
+<s:fielderror>
+    <s:param>title</s:param>
+</s:fielderror>
+    <s:form action="findBook" method="post">
             书名：<input type="text" name = "title"><br><br>
             <input type="submit" value="查询">
             <input type="reset" value="重置">
-    </form>
+    </s:form>
 </body>
 </html>
