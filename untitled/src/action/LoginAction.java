@@ -14,7 +14,6 @@ public class LoginAction extends ActionSupport {
 	private String username;
 	private String password;
 
-
 	public User getUser() {
 		return user;
 	}
@@ -47,6 +46,7 @@ public class LoginAction extends ActionSupport {
 			System.out.println(user.getUsername());
 			if (user != null) {
 				session.put("user", user);
+//				ActionContext.getContext().put("user", user);
 				return "success";
 			} else {
 				return "error";
@@ -56,30 +56,26 @@ public class LoginAction extends ActionSupport {
 		}
 	}
 
-//	public void validate() {
-//		System.out.println("validate()");
-//		if (null == username || username.equals("")) {
-//			addFieldError("username", "姓名不能为空");
-//		}
-//		if (null == password || password.equals("")) {
-//			addFieldError("password", "密码不能为空");
-//		}
-////        if (null == user.getUsername() || user.getUsername().equals("")) {
-////            addFieldError("user.username", "姓名不能为空");
-////        }
-//	}
+    public void validate() {
+        System.out.println("validate()");
+    }
+
+    //validate() will verify all methods, but validateXXX() will just verify XXX().
+	public void validateLogin() {
+		System.out.println("validateLogin()");
+		if (null == username || username.equals("")) {
+			addFieldError("username", "姓名不能为空!");
+		}
+		if (null == password || password.equals("")) {
+			addFieldError("password", "密码不能为空!");
+		}
+	}
 
 	public String logout() {
 		System.out.println("1");
 		ActionContext context = ActionContext.getContext();
 		Map<String, Object> session = context.getSession();
 		session.clear();
-		if (session.get("user") == null) {
-			System.out.println(session.get("user"));
-			return "success";
-		} else {
-			System.out.println("error");
-			return "error";
-		}
+		return INPUT;
 	}
 }

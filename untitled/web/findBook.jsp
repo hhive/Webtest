@@ -9,14 +9,14 @@
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <html>
 <head>
-    <title>findBook</title>
 </head>
+<title>findBook</title>
 <body>
 <s:fielderror>
     <s:param>title</s:param>
 </s:fielderror>
     <s:form action="findBook" method="post">
-            书名：<input type="text" name = "title"><br><br>
+            书名：<input type="text" name = "title"/><br><br>
             <input type="submit" value="查询">
             <input type="reset" value="重置">
     </s:form>

@@ -11,19 +11,21 @@
             <result name="error">/index.jsp</result>
             <result name="input">/index.jsp</result>
         </action>
-        <action name="addBook" class="action.AddBookAction">
+        <action name="addBook" class="action.BookManageAction" method="addBook">
             <result name="success">addSuccess.jsp</result>
             <result name="error">addError.jsp</result>
             <result name="input">/addBook.jsp</result>
         </action>
-        <action name="findBook" class="action.FindBookAction">
+        <action name="findBook" class="action.BookManageAction" method="findBook">
             <result name="success">findSuccess.jsp</result>
             <result name="error">findError.jsp</result>
             <result name="input">/findBook.jsp</result>
         </action>
         <action name="logout" class="action.LoginAction" method="logout">
-            <result name="success">/index.jsp</result>
-            <result name="error">/main.jsp</result>
+            <result name="input" type="dispatcher">
+                <param name="location">/index.jsp</param>
+            </result>
+            <!--<result name="input">/index.jsp</result>-->
         </action>
     </package>
 </struts>
