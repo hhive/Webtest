@@ -10,6 +10,11 @@ import java.util.Map;
 
 public class LoginAction extends ActionSupport {
 
+	private User user;
+	private String username;
+	private String password;
+
+
 	public User getUser() {
 		return user;
 	}
@@ -17,10 +22,6 @@ public class LoginAction extends ActionSupport {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-	private User user;
-	private String username;
-	private String password;
 
 	public String getPassword() {
 		return password;
@@ -37,7 +38,7 @@ public class LoginAction extends ActionSupport {
 		this.username = username;
 	}
 
-	public String execute() {
+	public String login() {
 		ActionContext context = ActionContext.getContext();
 		Map<String, Object> session = context.getSession();
 		User user = (User)session.get("user");
@@ -55,16 +56,30 @@ public class LoginAction extends ActionSupport {
 		}
 	}
 
-    public void validate() {
-	    System.out.println("validate()");
-        if (null == username || username.equals("")) {
-            addFieldError("username", "姓名不能为空");
-        }
-        if (null == password || password.equals("")) {
-            addFieldError("password", "密码不能为空");
-        }
-//        if (null == user.getUsername() || user.getUsername().equals("")) {
-//            addFieldError("user.username", "姓名不能为空");
-//        }
-    }
+//	public void validate() {
+//		System.out.println("validate()");
+//		if (null == username || username.equals("")) {
+//			addFieldError("username", "姓名不能为空");
+//		}
+//		if (null == password || password.equals("")) {
+//			addFieldError("password", "密码不能为空");
+//		}
+////        if (null == user.getUsername() || user.getUsername().equals("")) {
+////            addFieldError("user.username", "姓名不能为空");
+////        }
+//	}
+
+	public String logout() {
+		System.out.println("1");
+		ActionContext context = ActionContext.getContext();
+		Map<String, Object> session = context.getSession();
+		session.clear();
+		if (session.get("user") == null) {
+			System.out.println(session.get("user"));
+			return "success";
+		} else {
+			System.out.println("error");
+			return "error";
+		}
+	}
 }

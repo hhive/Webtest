@@ -5,8 +5,7 @@ import dao.BookDao;
 import model.Book;
 
 public class AddBookAction extends ActionSupport {
-    //    private String title;
-//    private int price;
+
     private Book book;
 
     public Book getBook() {

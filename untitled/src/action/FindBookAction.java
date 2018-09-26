@@ -1,12 +1,18 @@
 package action;
 
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
 import dao.BookDao;
 import model.Book;
 import java.util.Iterator;
 import java.util.List;
 
 
-public class FindBookAction {
+public class FindBookAction extends ActionSupport {
+
+    List<Book> bookList;
+    private String title;
+
     public List<Book> getBookList() {
         return bookList;
     }
@@ -15,9 +21,6 @@ public class FindBookAction {
         this.bookList = bookList;
     }
 
-    List<Book> bookList;
-//    private Book book;
-    private String title;
 
     public String getTitle() {
         return title;
@@ -27,26 +30,9 @@ public class FindBookAction {
         this.title = title;
     }
 
-//    public Book getBook() {
-//        return book;
-//    }
-//
-//    public void setBook(Book book) {
-//        this.book = book;
-//    }
 
     public String execute() {
-//        ActionContext context = ActionContext.getContext();
-//        Map<String, Object> session = context.getSession();
         bookList = new BookDao().find(title);
-        //session.put("bookList",bookList);
-
-//        Iterator iterator = bookList.iterator();
-//        while (iterator.hasNext()) {
-//            book = (Book)iterator.next();
-//            System.out.println(book.getTitle() + "," + book.getPrice());
-//        }
-
         if (0 != bookList.size()) {
             return "success";
         } else {
@@ -54,5 +40,10 @@ public class FindBookAction {
         }
     }
 
+//    	public void validate() {
+//		if (null == title || title.equals("")) {
+//			addFieldError("title", "书名不能为空！");
+//		}
+//	}
 
 }

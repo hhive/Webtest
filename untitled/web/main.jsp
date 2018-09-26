@@ -18,6 +18,9 @@
 	<li><a href="addBook.jsp">添加图书</a></li>
 	<li><a href="findBook.jsp">查询图书</a></li>
 </ol>
+    <s:form action="logout" method="post">
+        <input type="submit" value="注销">
+    </s:form>
 <s:debug/>
 </body>
 </html>
