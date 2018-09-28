@@ -39,5 +39,6 @@
     <input type="submit" value="提交"/>
     <input type="reset" value="重置"/>
 </s:form>
+<a href="main.jsp">返回主页</a>
 </body>
 </html>

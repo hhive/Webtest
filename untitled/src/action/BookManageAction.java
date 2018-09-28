@@ -36,16 +36,6 @@ public class BookManageAction extends ActionSupport {
         this.pageNow = pageNow;
     }
 
-    public int getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
-    }
-
-
-
     public List<Book> getAllBookList() {
         return allBookList;
     }
@@ -69,7 +59,6 @@ public class BookManageAction extends ActionSupport {
     public void setBookList(List<Book> bookList) {
         this.bookList = bookList;
     }
-
 
     public String getTitle() {
         return title;
@@ -107,10 +96,8 @@ public class BookManageAction extends ActionSupport {
 
     public String findAllTOPage() {
         allBookList = new BookDao().findAllTOPage(pageNow, pageSize);
-//        Map<String, Object> request=(Map) ActionContext.getContext().get("request");
-        Pager page=new Pager(getPageNow(),new BookDao().findAll().size());
-//        request.put("list", allBookList);
-//        request.put("page", page);
+        int totalSize = new BookDao().findAll().size();
+        Pager page=new Pager(getPageNow(),totalSize);
         ActionContext.getContext().put("page", page);
         if (0 != allBookList.size()) {
                 return "success";
@@ -126,7 +113,6 @@ public class BookManageAction extends ActionSupport {
 
         System.out.println(theTitle);
         System.out.println("thePrice:" + thePrice);
-
 
         if (new BookDao().delete(theTitle, thePrice)) {
             return "success";

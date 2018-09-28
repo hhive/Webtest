@@ -1,17 +1,16 @@
 package tool;
 
 public class Pager {
-	private int pageNow;				//��ǰҳ��
-	private int pageSize = 8;			//ÿҳ��ʾ��������¼
-	private int totalPage;				//���ж���ҳ
-	private int totalSize;				//һ�����ټ�¼
-	private boolean hasFirst;			//�Ƿ�����ҳ
-	private boolean hasPre;				//�Ƿ���ǰһҳ
-	private boolean hasNext;			//�Ƿ�����һҳ
-	private boolean hasLast;			//�Ƿ������һҳ
-	
+	private int pageNow;
+	private int pageSize = 8;
+	private int totalPage;
+	private int totalSize;
+	private boolean hasFirst;
+	private boolean hasPre;
+	private boolean hasNext;
+	private boolean hasLast;
+
 	public Pager(int pageNow, int totalSize){
-		//���ù��췽��Ϊ������ֵ
 		this.pageNow = pageNow;
 		this.totalSize = totalSize;
 	}
@@ -31,10 +30,9 @@ public class Pager {
 	}
 	
 	public int getTotalPage() {
-		//һ������ҳ���㷨
 		totalPage=getTotalSize()/getPageSize();
-		if(totalSize%pageSize!=0)
-			totalPage++;
+//		if(totalSize%pageSize!=0)
+//			totalPage++;
 		return totalPage;
 	}
 	public void setTotalPage(int totalPage) {
@@ -49,8 +47,7 @@ public class Pager {
 	}
 	
 	public boolean isHasFirst() {
-		//�����ǰΪ��һҳ��û����ҳ
-		if(pageNow==1)
+		if(pageNow==0)
 			return false;
 		else
 			return true;
@@ -60,7 +57,6 @@ public class Pager {
 	}
 	
 	public boolean isHasPre() {
-		//�������ҳ����ǰһҳ����Ϊ����ҳ�����䲻�ǵ�һҳ
 		if(this.isHasFirst())
 			return true;
 		else
@@ -71,7 +67,6 @@ public class Pager {
 	}
 	
 	public boolean isHasNext() {
-		//�����βҳ������һҳ����Ϊ��βҳ�����䲻�����һҳ
 		if(isHasLast())
 			return true;
 		else
@@ -82,7 +77,6 @@ public class Pager {
 	}
 	
 	public boolean isHasLast() {
-		//����������һҳ����βҳ
 		if(pageNow==this.getTotalPage())
 			return false;
 		else

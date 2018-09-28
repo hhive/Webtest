@@ -83,7 +83,7 @@ public class BookDao {
     public List<Book> findAllTOPage(int PageNow, int PageSize) {
         Book book;
         ArrayList<Book> allBookList = new ArrayList<>();
-        String sql = "select * from book limit " + PageNow + "," + PageSize + "";
+        String sql = "select * from book limit " + PageNow * PageSize + "," + PageSize + "";
         ResultSet rs = sqlSrvDBConn.executeQuery(sql);
         try {
             while (rs != null && rs.next()) {
@@ -101,8 +101,8 @@ public class BookDao {
     }
 
     public boolean delete(String title, int price) {
-        String sql = "delete from book where title = '" + title + "' and price = '" + price + "'" ;
-//        String sql = "delete from book where title = '" + title + "'" ;
+        String sql = "delete from book where title = '"
+                + title + "' and price = '" + price + "'" ;
         int row = sqlSrvDBConn.executeUpdate(sql);
         if (row > 0) {
             return true;
