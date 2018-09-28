@@ -25,7 +25,7 @@
             <result name="success">/bookList.jsp</result>
             <result name="error">/main.jsp</result>
         </action>
-        <action name="findAllToPage" class="action.BookManageAction" method="findAllTOPage">
+        <action name="findAllToPage" class="action.BookManageAction" method="findAllToPage">
             <result name="success">/bookList.jsp</result>
             <result name="error">/main.jsp</result>
         </action>

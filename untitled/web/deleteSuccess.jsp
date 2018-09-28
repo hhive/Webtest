@@ -21,6 +21,6 @@
     价格：<s:property value="book.price"/><br>
 </h3>
 <a href="main.jsp">返回主页</a>
-<a href="findAllBook.action">继续浏览</a>
+<a href="findAllToPage.action">继续浏览</a>
 </body>
 </html>

@@ -31,8 +31,8 @@ public class Pager {
 	
 	public int getTotalPage() {
 		totalPage=getTotalSize()/getPageSize();
-//		if(totalSize%pageSize!=0)
-//			totalPage++;
+		if(totalSize%pageSize!=0)
+			totalPage++;
 		return totalPage;
 	}
 	public void setTotalPage(int totalPage) {
@@ -47,7 +47,7 @@ public class Pager {
 	}
 	
 	public boolean isHasFirst() {
-		if(pageNow==0)
+		if(pageNow==1)
 			return false;
 		else
 			return true;

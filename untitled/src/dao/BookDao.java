@@ -24,25 +24,8 @@ public class BookDao {
             return false;
     }
 
-    //    public Book find(String title) {
-//        Book book = null;
-//        String sql = "select * from book where title = '" + title + "'";
-//        ResultSet rs = sqlSrvDBConn.executeQuery(sql);
-//        try {
-//            while (rs != null && rs.next()) {
-//                book = new Book(title,rs.getInt(3));
-//                System.out.println(book.getTitle() + "," + book.getPrice());
-//            }
-//
-//            rs.close();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        sqlSrvDBConn.closeStmt();
-//        return book;
-//    }
     public List<Book> find(String title) {
-        Book book = null;
+        Book book;
         ArrayList<Book> bookList = new ArrayList<>();
         String sql = "select * from book where title = '" + title + "'";
         ResultSet rs = sqlSrvDBConn.executeQuery(sql);
@@ -83,7 +66,7 @@ public class BookDao {
     public List<Book> findAllTOPage(int PageNow, int PageSize) {
         Book book;
         ArrayList<Book> allBookList = new ArrayList<>();
-        String sql = "select * from book limit " + PageNow * PageSize + "," + PageSize + "";
+        String sql = "select * from book limit " + (PageNow - 1) * PageSize + "," + PageSize + "";
         ResultSet rs = sqlSrvDBConn.executeQuery(sql);
         try {
             while (rs != null && rs.next()) {

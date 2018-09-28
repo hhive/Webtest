@@ -41,19 +41,37 @@
 <s:div>
     <s:set name="page" value="#page"/>
     <s:if test="#page.hasFirst">
-        <s:a href="findAllToPage.action?pageNow=0">首页</s:a>
+        <s:a href="findAllToPage.action?pageNow=1">首页</s:a>
     </s:if>
     <s:if test="#page.hasPre">
         <a href="findAllToPage.action?pageNow=<s:property value="#page.pageNow-1"/>">上一页</a>
     </s:if>
+
+    <s:property value="#page.pageNow"/>/<s:property value="#page.totalPage"/>
+
     <s:if test="#page.hasNext">
         <a href="findAllToPage.action?pageNow=<s:property value="#page.pageNow+1"/>">下一页</a>
     </s:if>
     <s:if test="#page.hasLast">
         <a href="findAllToPage.action?pageNow=<s:property value="#page.totalPage"/>">尾页</a>
-    </s:if>
+    </s:if><br>
+    <form action="findAllToPage.action" method="post" onsubmit="return validate()">
+    输入页数：<input type="text" name="pageNow" size="3">&nbsp;
+    <input type="submit" value="跳转">
+    </form>
 </s:div><br><br>
 <a href="main.jsp">返回主页</a>
 <s:debug/>
 </body>
+<script type="text/javascript">
+    function validate() {
+        var page = document.getElementsByName("pageNow")[0].value;
+        if (page < 1 || page > <s:property value="#page.totalPage"/>) {
+            alert("输入的页数不能小于1或大于总页数");
+            window.document.location.href="findAllToPage.action?pageNow=<s:property value="#page.pageNow"/>";
+            return false;
+        }
+        return true;
+    }
+</script>
 </html>
