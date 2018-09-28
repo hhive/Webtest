@@ -28,20 +28,5 @@ public class UserDao {
             dbConnection.closeStmt();
             return user;
         }
-
-        public User getUser(String username) {
-            User user = null;
-            String sql = "select * from User where id='" + username + "'";
-            ResultSet resultSet = dbConnection.executeQuery(sql);
-            try {
-                if (resultSet != null && resultSet.next()) {
-                    user = new User(username, resultSet.getString("password"));
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            dbConnection.closeStmt();
-            return user;
-        }
     }
 

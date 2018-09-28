@@ -43,7 +43,6 @@ public class LoginAction extends ActionSupport {
 		User user = (User)session.get("user");
 		if (user == null) {
 			user = new UserDao().validate(username, password);
-			System.out.println(user.getUsername());
 			if (user != null) {
 				session.put("user", user);
 //				ActionContext.getContext().put("user", user);

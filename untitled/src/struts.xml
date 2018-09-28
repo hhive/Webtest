@@ -21,6 +21,18 @@
             <result name="error">findError.jsp</result>
             <result name="input">/findBook.jsp</result>
         </action>
+        <action name="findAllBook" class="action.BookManageAction" method="findAllBook">
+            <result name="success">/bookList.jsp</result>
+            <result name="error">/main.jsp</result>
+        </action>
+        <action name="findAllToPage" class="action.BookManageAction" method="findAllTOPage">
+            <result name="success">/bookList.jsp</result>
+            <result name="error">/main.jsp</result>
+        </action>
+        <action name="delete" class="action.BookManageAction" method="deleteBook">
+            <result name="success">/deleteSuccess.jsp</result>
+            <result name="error">/deleteError.jsp</result>
+        </action>
         <action name="logout" class="action.LoginAction" method="logout">
             <result name="input" type="dispatcher">
                 <param name="location">/index.jsp</param>
