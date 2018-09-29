@@ -32,8 +32,6 @@
             <td>
                 <a href="delete.action?book.title=<s:property value="#bL.title"/>&book.price=<s:property value="#bL.price"/> "
                    onclick="if(!confirm('确定删除这本书吗？'))return false;else return true;">删除</a>
-                    <%--<a href="delete.action?book.title=<s:property value="#bL.title"/>"--%>
-                       <%--onclick="if(!confirm('确定删除这本书吗？'))return false;else return true;">删除</a>--%>
             </td>
         </tr>
     </s:iterator>

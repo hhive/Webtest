@@ -97,7 +97,7 @@ public class BookManageAction extends ActionSupport {
     public String findAllToPage() {
         int totalSize = new BookDao().findAll().size();
         Pager page = new Pager(getPageNow(), totalSize);
-        if (getPageNow() < page.getTotalPage() && getPageNow() > 0) {
+        if (getPageNow() <= page.getTotalPage() && getPageNow() > 0) {
             System.out.println(getPageNow());
             allBookList = new BookDao().findAllTOPage(pageNow, pageSize);
             ActionContext.getContext().put("page", page);
