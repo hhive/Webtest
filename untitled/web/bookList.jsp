@@ -56,7 +56,7 @@
         <a href="findAllToPage.action?pageNow=<s:property value="#page.totalPage"/>">尾页</a>
     </s:if><br>
     <form action="findAllToPage.action" method="post" onsubmit="return validate()">
-    输入页数：<input type="text" name="pageNow" size="3">&nbsp;
+    输入页数：<input type="text" name="pageNow" size="3" oninput = "value=value.replace(/[^\d]/g,'')">
     <input type="submit" value="跳转">
     </form>
 </s:div><br><br>

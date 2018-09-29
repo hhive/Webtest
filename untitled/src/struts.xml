@@ -23,11 +23,11 @@
         </action>
         <action name="findAllBook" class="action.BookManageAction" method="findAllBook">
             <result name="success">/bookList.jsp</result>
-            <result name="error">/main.jsp</result>
+            <result name="error">/bookListError.jsp</result>
         </action>
         <action name="findAllToPage" class="action.BookManageAction" method="findAllToPage">
             <result name="success">/bookList.jsp</result>
-            <result name="error">/main.jsp</result>
+            <result name="error">/bookListError.jsp</result>
         </action>
         <action name="delete" class="action.BookManageAction" method="deleteBook">
             <result name="success">/deleteSuccess.jsp</result>
