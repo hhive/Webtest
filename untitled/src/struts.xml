@@ -12,26 +12,26 @@
             <result name="input">/index.jsp</result>
         </action>
         <action name="addBook" class="action.BookManageAction" method="addBook">
-            <result name="success">addSuccess.jsp</result>
-            <result name="error">addError.jsp</result>
-            <result name="input">/addBook.jsp</result>
+            <result name="success">/bookManage/addSuccess.jsp</result>
+            <result name="error">/bookManage/addError.jsp</result>
+            <result name="input">/bookManage/addBook.jsp</result>
         </action>
         <action name="findBook" class="action.BookManageAction" method="findBook">
-            <result name="success">findSuccess.jsp</result>
-            <result name="error">findError.jsp</result>
-            <result name="input">/findBook.jsp</result>
+            <result name="success">/searchBook/findSuccess.jsp</result>
+            <result name="error">/searchBook/findError.jsp</result>
+            <result name="input">/searchBook/findBook.jsp</result>
         </action>
         <action name="findAllBook" class="action.BookManageAction" method="findAllBook">
-            <result name="success">/bookList.jsp</result>
-            <result name="error">/bookListError.jsp</result>
+            <result name="success">/searchBook/bookList.jsp</result>
+            <result name="error">/searchBook/bookListError.jsp</result>
         </action>
         <action name="findAllToPage" class="action.BookManageAction" method="findAllToPage">
-            <result name="success">/bookList.jsp</result>
-            <result name="error">/bookListError.jsp</result>
+            <result name="success">/searchBook/bookList.jsp</result>
+            <result name="error">/searchBook/bookListError.jsp</result>
         </action>
         <action name="delete" class="action.BookManageAction" method="deleteBook">
-            <result name="success">/deleteSuccess.jsp</result>
-            <result name="error">/deleteError.jsp</result>
+            <result name="success">/bookManage/deleteSuccess.jsp</result>
+            <result name="error">/bookManage/deleteError.jsp</result>
         </action>
         <action name="logout" class="action.LoginAction" method="logout">
             <result name="input" type="dispatcher">

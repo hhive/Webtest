@@ -23,7 +23,7 @@
 </h3>
 <hr>
 <h1>
-    <a href="main.jsp">返回主页</a>
+    <a href="../main.jsp">返回主页</a>
 </h1>
 </body>
 </html>

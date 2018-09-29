@@ -11,6 +11,6 @@
     <title>deleteError</title>
 </head>
 <body>
-删除失败，点击<a href="main.jsp">这里</a>返回主页。
+删除失败，点击<a href="../main.jsp">这里</a>返回主页。
 </body>
 </html>

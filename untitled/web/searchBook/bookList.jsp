@@ -60,7 +60,7 @@
     <input type="submit" value="跳转">
     </form>
 </s:div><br><br>
-<a href="main.jsp">返回主页</a>
+<a href="../main.jsp">返回主页</a>
 <s:debug/>
 </body>
 <script type="text/javascript">

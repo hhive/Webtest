@@ -39,7 +39,7 @@
 </h3>
 <hr>
 <h2>
-    <a href="main.jsp">返回主页</a>
+    <a href="../main.jsp">返回主页</a>
 </h2>
 <s:debug/>
 </body>

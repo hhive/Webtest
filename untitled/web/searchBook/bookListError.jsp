@@ -12,7 +12,7 @@
 </head>
 <body>
 <h1>
-    没有书籍了，点击<a href="main.jsp">这里</a>返回主页
+    没有书籍了，点击<a href="../main.jsp">这里</a>返回主页
 </h1>
 </body>
 </html>

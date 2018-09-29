@@ -15,8 +15,8 @@
 	</h1>
 <hr>
 <ol type="1" start="1">
-	<li><a href="addBook.jsp">添加图书</a></li>
-	<li><a href="findBook.jsp">查询图书</a></li>
+	<li><a href="bookManage/addBook.jsp">添加图书</a></li>
+	<li><a href="searchBook/findBook.jsp">查询图书</a></li>
 	<li><a href="findAllToPage.action">浏览图书</a></li>
 </ol>
     <%--<s:form action="logout" method="post">--%>
