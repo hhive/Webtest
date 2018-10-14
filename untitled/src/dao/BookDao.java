@@ -1,10 +1,12 @@
 package dao;
 
+import com.sun.xml.internal.bind.v2.runtime.reflect.ListIterator;
 import jdbc.SqlSrvDBConn;
 import model.Book;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class BookDao {
@@ -15,7 +17,7 @@ public class BookDao {
     }
 
     public boolean add(Book book) {
-        String sql = "insert into book (title,price) values ('" + book.getTitle() + "','" + book.getPrice() + "')";
+        String sql = "insert into book2 (bookId,title,author,price) values ('" + book.getBookId() + "','" + book.getTitle() + "','" + book.getAuthor() + "','" + book.getPrice() + "')";
         int rows = sqlSrvDBConn.executeUpdate(sql);
         sqlSrvDBConn.closeStmt();
         if (rows > 0)
@@ -23,15 +25,26 @@ public class BookDao {
         else
             return false;
     }
-
+    public boolean modify(Book book) {
+        System.out.println("modify2");
+        String sql = "update book2 set title = '" + book.getTitle()
+                + "',author = '" + book.getAuthor() + "',price = '" + book.getPrice() + "' where bookId = '" + book.getBookId() + "'";
+        int rows = sqlSrvDBConn.executeUpdate(sql);
+        System.out.println(sql);
+        sqlSrvDBConn.closeStmt();
+        if (rows > 0) {
+            return true;
+        } else
+            return false;
+    }
     public List<Book> find(String title) {
         Book book;
         ArrayList<Book> bookList = new ArrayList<>();
-        String sql = "select * from book where title = '" + title + "'";
+        String sql = "select * from book2 where title like '%" + title + "%' or author like '%" + title + "%' or price like '%" + title + "%'";
         ResultSet rs = sqlSrvDBConn.executeQuery(sql);
         try {
             while (rs != null && rs.next()) {
-                book = new Book(title, rs.getInt(3));
+                book = new Book(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4));
                 bookList.add(book);
                 System.out.println(book.getTitle() + "," + book.getPrice());
             }
@@ -47,11 +60,11 @@ public class BookDao {
     public List<Book> findAll() {
         Book book;
         ArrayList<Book> allBookList = new ArrayList<>();
-        String sql = "select * from book";
+        String sql = "select * from book2";
         ResultSet rs = sqlSrvDBConn.executeQuery(sql);
         try {
             while (rs != null && rs.next()) {
-                book = new Book(rs.getString(2), rs.getInt(3));
+                book = new Book(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4));
                 allBookList.add(book);
 //                System.out.println(book.getTitle() + "," + book.getPrice());
             }
@@ -66,16 +79,21 @@ public class BookDao {
     public List<Book> findAllTOPage(int PageNow, int PageSize) {
         Book book;
         ArrayList<Book> allBookList = new ArrayList<>();
-        String sql = "select * from book limit " + (PageNow - 1) * PageSize + "," + PageSize + "";
+        String sql = "select * from book2 limit " + (PageNow - 1) * PageSize + "," + PageSize + "";
         ResultSet rs = sqlSrvDBConn.executeQuery(sql);
         try {
             while (rs != null && rs.next()) {
-                book = new Book(rs.getString(2), rs.getInt(3));
+                book = new Book(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4));
                 allBookList.add(book);
             }
             if (rs != null) {
                 rs.close();
             }
+            Iterator iterator = allBookList.iterator();
+//            while (iterator.hasNext()) {
+//                Book book1 = (Book)iterator.next();
+//                System.out.println(book1.getTitle());
+//            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -83,9 +101,9 @@ public class BookDao {
         return allBookList;
     }
 
-    public boolean delete(String title, int price) {
-        String sql = "delete from book where title = '"
-                + title + "' and price = '" + price + "'" ;
+    public boolean delete(String bookId) {
+        String sql = "delete from book2 where bookId = '"
+                + bookId + "'" ;
         int row = sqlSrvDBConn.executeUpdate(sql);
         if (row > 0) {
             return true;

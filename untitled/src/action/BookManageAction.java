@@ -76,6 +76,14 @@ public class BookManageAction extends ActionSupport {
             return "error";
         }
     }
+    public String modifyBook() {
+        System.out.println("modify1");
+        if (new BookDao().modify(book)) {
+            return "success";
+        } else {
+            return "error";
+        }
+    }
     public String findBook() {
         bookList = new BookDao().find(title);
         if (0 != bookList.size()) {
@@ -114,13 +122,9 @@ public class BookManageAction extends ActionSupport {
     }
 
     public String deleteBook() {
-        String theTitle = book.getTitle();
-        int thePrice = book.getPrice();
+        String theBookId = book.getBookId();
 
-        System.out.println(theTitle);
-        System.out.println("thePrice:" + thePrice);
-
-        if (new BookDao().delete(theTitle, thePrice)) {
+        if (new BookDao().delete(theBookId)) {
             return "success";
         } else {
             return "error";

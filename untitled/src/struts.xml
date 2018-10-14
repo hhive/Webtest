@@ -10,11 +10,16 @@
             <result name="success">/main.jsp</result>
             <result name="error">/index.jsp</result>
             <result name="input">/index.jsp</result>
+            <!--<result type="redirectAction"></result>-->
         </action>
         <action name="addBook" class="action.BookManageAction" method="addBook">
-            <result name="success">/bookManage/addSuccess.jsp</result>
-            <result name="error">/bookManage/addError.jsp</result>
+            <result name="success">/bookManage/addBook.jsp</result>
+            <result name="error">/bookManage/addBook.jsp</result>
             <result name="input">/bookManage/addBook.jsp</result>
+        </action>
+        <action name="modifyBook" class="action.BookManageAction" method="modifyBook">
+            <result name="success">/bookManage/modifyBook.jsp</result>
+            <result name="error">/bookManage/modifyBook.jsp</result>
         </action>
         <action name="findBook" class="action.BookManageAction" method="findBook">
             <result name="success">/searchBook/findSuccess.jsp</result>

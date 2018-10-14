@@ -17,20 +17,30 @@
 <body>
 <table border="1" cellpadding="10" align="center">
     <tr>
+        <td>书号</td>
         <td>书名</td>
+        <td>作者</td>
         <td>价格</td>
         <td>操作</td>
     </tr>
     <s:iterator value="allBookList" id="bL">
         <tr>
             <td>
+                <s:property value="#bL.bookId"/>
+            </td>
+            <td>
                 <s:property value="#bL.title"/>
+            </td>
+            <td>
+                <s:property value="#bL.author"/>
             </td>
             <td>
                 <s:property value="#bL.price"/>
             </td>
             <td>
-                <a href="delete.action?book.title=<s:property value="#bL.title"/>&book.price=<s:property value="#bL.price"/> "
+                <a href=../bookManage/modifyBook.jsp?bookId=<s:property value="#bL.bookId"/>&title=<s:property value="#bL.title"/>&author=<s:property value="#bL.author"/>&price=<s:property value="#bL.price"/>">修改</a>
+                    <%--<a href="modifyBook.action?book.bookId=<s:property value="#bL.bookId"/>">修改</a>--%>
+                <a href="delete.action?book.bookId=<s:property value="#bL.bookId"/>"
                    onclick="if(!confirm('确定删除这本书吗？'))return false;else return true;">删除</a>
             </td>
         </tr>
@@ -54,7 +64,7 @@
         <a href="findAllToPage.action?pageNow=<s:property value="#page.totalPage"/>">尾页</a>
     </s:if><br>
     <form action="findAllToPage.action" method="post" onsubmit="return validate()">
-    输入页数：<input type="text" name="pageNow" size="3" oninput = "value=value.replace(/[^\d]/g,'')">
+    输入页数：<input type="text" name="pageNow" size="2" oninput = "value=value.replace(/[^\d]/g,'')">
     <input type="submit" value="跳转">
     </form>
 </s:div><br><br>

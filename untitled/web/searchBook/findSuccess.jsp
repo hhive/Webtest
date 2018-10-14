@@ -17,15 +17,22 @@
 </h1>
 <hr>
 <h3>
-    <table border="1" width="100%">
+    <table border="1" cellpadding="10">
         <tr>
             <td>书名</td>
+            <td>作者</td>
             <td>价格</td>
         </tr>
         <s:iterator value="bookList" id="bL">
             <tr>
                 <td>
+                    <s:property value="#bL.bookId"/>
+                </td>
+                <td>
                     <s:property value="#bL.title"/>
+                </td>
+                <td>
+                    <s:property value="#bL.author"/>
                 </td>
                 <td>
                     <s:property value="#bL.price"/>

@@ -24,9 +24,21 @@
     <table>
         <caption>添加书籍</caption>
         <tr>
+            <td>书号：</td>
+            <td>
+                <input type="text" name="book.bookId" size="20">
+            </td>
+        </tr>
+        <tr>
             <td>书名：</td>
             <td>
                 <input type="text" name="book.title" size="20">
+            </td>
+        </tr>
+        <tr>
+            <td>作者：</td>
+            <td>
+                <input type="text" name="book.author" size="20">
             </td>
         </tr>
         <tr>
@@ -37,7 +49,15 @@
         </tr>
     </table>
     <input type="submit" value="提交"/>
-    <input type="reset" value="重置"/>
+    <input type="reset" value="重置"/><br>
+    <s:property value="book.title"/>
+    <s:if test="book.title != null">
+        成功添加书籍：<br>
+      <s:property value="book.title"/>，<s:property value="book.author"/>,<s:property value="book.price"/>
+    </s:if>
+    <s:elseif test="book.title == null">
+        添加失败。
+    </s:elseif>
 </s:form>
 <a href="../main.jsp">返回主页</a>
 </body>

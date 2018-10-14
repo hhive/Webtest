@@ -25,6 +25,7 @@ public class SqlSrvDBConn {
     		e.printStackTrace();
     	}
     	rs=null;
+
     }
     //执行查询类的SQL语句，有返回集
     public ResultSet executeQuery(String sql)
