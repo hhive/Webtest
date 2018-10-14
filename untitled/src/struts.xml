@@ -22,8 +22,8 @@
             <result name="error">/bookManage/modifyBook.jsp</result>
         </action>
         <action name="findBook" class="action.BookManageAction" method="findBook">
-            <result name="success">/searchBook/findSuccess.jsp</result>
-            <result name="error">/searchBook/findError.jsp</result>
+            <result name="success">/searchBook/findBook.jsp</result>
+            <result name="error">/searchBook/findBook.jsp</result>
             <result name="input">/searchBook/findBook.jsp</result>
         </action>
         <action name="findAllBook" class="action.BookManageAction" method="findAllBook">

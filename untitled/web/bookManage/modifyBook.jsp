@@ -10,11 +10,13 @@
 <html>
 <head>
     <title>ModifyBook</title>
+    <h1>
+        修改书籍
+    </h1>
 </head>
 <body>
 <s:form action = "modifyBook" method="post" validate="true">
     <table>
-    <caption>修改书籍</caption>
     <tr>
         <td>书号：</td>
         <td>

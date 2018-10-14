@@ -19,6 +19,7 @@
 <h3>
     <table border="1" cellpadding="10">
         <tr>
+            <td>书号</td>
             <td>书名</td>
             <td>作者</td>
             <td>价格</td>

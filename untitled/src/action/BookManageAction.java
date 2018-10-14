@@ -73,6 +73,7 @@ public class BookManageAction extends ActionSupport {
         if (new BookDao().add(book)) {
             return "success";
         } else {
+            book = null;
             return "error";
         }
     }
@@ -85,7 +86,11 @@ public class BookManageAction extends ActionSupport {
         }
     }
     public String findBook() {
-        bookList = new BookDao().find(title);
+        int totalSize = new BookDao().findCount(title);
+        System.out.println(totalSize);
+        Pager page = new Pager(getPageNow(), totalSize);
+        bookList = new BookDao().find(title, pageNow, pageSize);
+        ActionContext.getContext().put("page", page);
         if (0 != bookList.size()) {
             return "success";
         } else {
@@ -106,7 +111,7 @@ public class BookManageAction extends ActionSupport {
         int totalSize = new BookDao().findAll().size();
         Pager page = new Pager(getPageNow(), totalSize);
         if (getPageNow() <= page.getTotalPage() && getPageNow() > 0) {
-            System.out.println(getPageNow());
+            //System.out.println(getPageNow());
             allBookList = new BookDao().findAllTOPage(pageNow, pageSize);
             ActionContext.getContext().put("page", page);
         }else {

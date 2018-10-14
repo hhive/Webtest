@@ -50,7 +50,7 @@
     </table>
     <input type="submit" value="提交"/>
     <input type="reset" value="重置"/><br>
-    <s:property value="book.title"/>
+    <s:property value="book.title"/><br>
     <s:if test="book.title != null">
         成功添加书籍：<br>
       <s:property value="book.title"/>，<s:property value="book.author"/>,<s:property value="book.price"/>
@@ -58,6 +58,9 @@
     <s:elseif test="book.title == null">
         添加失败。
     </s:elseif>
+    <s:else>
+        失败。
+    </s:else>
 </s:form>
 <a href="../main.jsp">返回主页</a>
 </body>

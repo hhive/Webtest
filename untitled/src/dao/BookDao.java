@@ -37,18 +37,34 @@ public class BookDao {
         } else
             return false;
     }
-    public List<Book> find(String title) {
+    public int findCount(String title) {
+        int size = 0;
+        String sql = "select count(*) from book2 where title like '%"
+                + title + "%' or author like '%" + title + "%' or price like '%" + title + "%'";
+        ResultSet rs = sqlSrvDBConn.executeQuery(sql);
+        try {
+            if (rs != null && rs.next()){
+                size = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return size;
+    }
+
+    public List<Book> find(String title, int PageNow, int PageSize) {
         Book book;
         ArrayList<Book> bookList = new ArrayList<>();
-        String sql = "select * from book2 where title like '%" + title + "%' or author like '%" + title + "%' or price like '%" + title + "%'";
+        String sql = "select * from book2 where title like '%"
+                + title + "%' or author like '%" + title + "%' or price like '%" + title + "%' limit "
+                + (PageNow - 1) * PageSize + "," + PageSize + "";
         ResultSet rs = sqlSrvDBConn.executeQuery(sql);
         try {
             while (rs != null && rs.next()) {
                 book = new Book(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4));
                 bookList.add(book);
-                System.out.println(book.getTitle() + "," + book.getPrice());
+                System.out.println("find");
             }
-
             rs.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -89,7 +105,7 @@ public class BookDao {
             if (rs != null) {
                 rs.close();
             }
-            Iterator iterator = allBookList.iterator();
+//            Iterator iterator = allBookList.iterator();
 //            while (iterator.hasNext()) {
 //                Book book1 = (Book)iterator.next();
 //                System.out.println(book1.getTitle());
