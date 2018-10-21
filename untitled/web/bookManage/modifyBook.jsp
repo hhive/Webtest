@@ -40,13 +40,17 @@
         <td>单价：</td>
         <td>
         <input type="text" name="book.price" value="${param.price}<s:property value="book.price"/>" size="20">
+            <s:if test="hasActionMessages()">
+                你好
+            </s:if>
+            <s:actionmessage/>
         </td>
     </tr>
     </table>
     <input type="submit" value="修改"/>
-    <s:if test="book.bookId != null">
-        修改成功。
-    </s:if>
+    <%--<s:if test="book.bookId != null">--%>
+        <%--修改成功。--%>
+    <%--</s:if>--%>
 </s:form>
 <a href="findBook.action">继续查询</a>
 <a href="../main.jsp">返回主页</a>

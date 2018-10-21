@@ -1,10 +1,21 @@
 package model;
 
+import java.io.File;
+
 public class Book {
     private String bookId;
     private String title;
     private String author;
     private int price;
+    private String intro;
+
+    public String  getIntro() {
+        return intro;
+    }
+
+    public void setIntro(String intro) {
+        this.intro = intro;
+    }
 
     public String getBookId() {
         return bookId;
@@ -24,11 +35,12 @@ public class Book {
 
     public Book() {
     }
-    public Book(String bookId, String title,String author, int price) {
+    public Book(String bookId, String title,String author, int price, String intro) {
         this.bookId = bookId;
         this.title = title;
         this.author = author;
         this.price = price;
+        this.intro = intro;
     }
     public String getTitle() {
         return title;

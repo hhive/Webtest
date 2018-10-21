@@ -5,7 +5,7 @@
   Time: 8:04
   To change this template use File | Settings | File Templates.
 --%>
-<%@page pageEncoding="utf-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="/struts-tags" prefix="s" %>
 <html>
 <head>
@@ -20,7 +20,7 @@
 <s:fielderror>
     <s:param>book.price</s:param>
 </s:fielderror>
-<s:form action = "addBook" method="post" validate="true">
+<s:form action = "addBook" method="post" enctype="multipart/form-data">
     <table>
         <caption>添加书籍</caption>
         <tr>
@@ -45,22 +45,26 @@
             <td>单价：</td>
             <td>
                 <input type="text" name="book.price" size="20">
+                <s:actionmessage/>
+            </td>
+        </tr>
+        <tr>
+            <td>简介：</td>
+            <td>
+                <s:file name="upLoad" label="上传的文件"/>
             </td>
         </tr>
     </table>
     <input type="submit" value="提交"/>
     <input type="reset" value="重置"/><br>
-    <s:property value="book.title"/><br>
-    <s:if test="book.title != null">
+    <%--<s:property value="book.title"/><br>--%>
+    <s:if test="book.title != null&book.author != null&book.price >= 10">
         成功添加书籍：<br>
       <s:property value="book.title"/>，<s:property value="book.author"/>,<s:property value="book.price"/>
     </s:if>
-    <s:elseif test="book.title == null">
+    <s:elseif test="flag == true">
         添加失败。
     </s:elseif>
-    <s:else>
-        失败。
-    </s:else>
 </s:form>
 <a href="../main.jsp">返回主页</a>
 </body>

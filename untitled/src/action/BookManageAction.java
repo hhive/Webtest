@@ -6,6 +6,7 @@ import dao.BookDao;
 import model.Book;
 import tool.Pager;
 
+import java.io.*;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,26 @@ public class BookManageAction extends ActionSupport {
     List<Book> bookList;
     List<Book> allBookList;
     private String title;
+
+    public File getUpLoad() {
+        return upLoad;
+    }
+
+    public void setUpLoad(File upLoad) {
+        this.upLoad = upLoad;
+    }
+
+    private File upLoad;
+
+    public boolean isFlag() {
+        return flag;
+    }
+
+    public void setFlag(boolean flag) {
+        this.flag = flag;
+    }
+
+    private boolean flag;
 
     public Pager getPager() {
         return pager;
@@ -70,9 +91,37 @@ public class BookManageAction extends ActionSupport {
 
     public String addBook() {
         System.out.println(book.getTitle());
+        try {
+            if (getUpLoad() != null) {
+                StringBuffer buffer1 = new StringBuffer();
+                BufferedReader bf= new BufferedReader(new FileReader(getUpLoad()));
+                String s = null;
+                while((s = bf.readLine())!=null){//使用readLine方法，一次读一行
+                    buffer1.append(s.trim());
+                }
+//                FileInputStream fis = new FileInputStream(getUpLoad());
+//                OutputStream os = new FileOutputStream("d:\\1.txt");
+//                byte[] buffer = new byte[fis.available()];
+//                int count = 0;
+//                while ((count = fis.read(buffer)) > 0) {
+//                    os.write(buffer, 0, count);
+//                }
+//                for (byte x : buffer) {
+//                    System.out.println(x);
+//                }
+                book.setIntro(buffer1.toString());
+                System.out.println("intro:" + book.getIntro());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         if (new BookDao().add(book)) {
+//            String mes =  "成功添加书籍：" + book.getTitle() + "," + book.getAuthor() + "," + book.getPrice();
+//            ActionContext.getContext().getSession().put("mes",mes);
+            flag = false;
             return "success";
         } else {
+            flag = true;
             book = null;
             return "error";
         }
@@ -134,5 +183,10 @@ public class BookManageAction extends ActionSupport {
         } else {
             return "error";
         }
+    }
+    public String showIntro() {
+        String theBookId = book.getBookId();
+        book.setIntro(new BookDao().showIntro(theBookId));
+        return "success";
     }
 }

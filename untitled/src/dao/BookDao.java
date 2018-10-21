@@ -17,7 +17,7 @@ public class BookDao {
     }
 
     public boolean add(Book book) {
-        String sql = "insert into book2 (bookId,title,author,price) values ('" + book.getBookId() + "','" + book.getTitle() + "','" + book.getAuthor() + "','" + book.getPrice() + "')";
+        String sql = "insert into book2 (bookId,title,author,price,intro) values ('" + book.getBookId() + "','" + book.getTitle() + "','" + book.getAuthor() + "','" + book.getPrice() + "','" + book.getIntro() + "')";
         int rows = sqlSrvDBConn.executeUpdate(sql);
         sqlSrvDBConn.closeStmt();
         if (rows > 0)
@@ -61,7 +61,7 @@ public class BookDao {
         ResultSet rs = sqlSrvDBConn.executeQuery(sql);
         try {
             while (rs != null && rs.next()) {
-                book = new Book(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4));
+                book = new Book(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5));
                 bookList.add(book);
                 System.out.println("find");
             }
@@ -80,7 +80,7 @@ public class BookDao {
         ResultSet rs = sqlSrvDBConn.executeQuery(sql);
         try {
             while (rs != null && rs.next()) {
-                book = new Book(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4));
+                book = new Book(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5));
                 allBookList.add(book);
 //                System.out.println(book.getTitle() + "," + book.getPrice());
             }
@@ -99,7 +99,7 @@ public class BookDao {
         ResultSet rs = sqlSrvDBConn.executeQuery(sql);
         try {
             while (rs != null && rs.next()) {
-                book = new Book(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4));
+                book = new Book(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5));
                 allBookList.add(book);
             }
             if (rs != null) {
@@ -126,5 +126,22 @@ public class BookDao {
         } else {
             return false;
         }
+    }
+    public String showIntro(String bookId) {
+        String intro = null;
+        String sql = "select intro from book2 where bookId = '"
+                + bookId + "'" ;
+        ResultSet rs = sqlSrvDBConn.executeQuery(sql);
+        try {
+            while (rs != null && rs.next()) {
+                intro = rs.getString(1);
+                System.out.println(intro);
+            }
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        sqlSrvDBConn.closeStmt();
+        return intro;
     }
 }

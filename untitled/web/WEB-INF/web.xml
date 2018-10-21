@@ -11,4 +11,16 @@
         <filter-name>struts2</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <!--<filter>-->
+        <!--<filter-name>filter</filter-name>-->
+        <!--<filter-class>tool.SetCharacterEncodingFilter</filter-class>-->
+        <!--<init-param>-->
+            <!--<param-name>gbk</param-name>-->
+            <!--<param-value>gbk</param-value>-->
+        <!--</init-param>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>filter</filter-name>-->
+        <!--<url-pattern>*.jsp </url-pattern>-->
+    <!--</filter-mapping>-->
 </web-app>

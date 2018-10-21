@@ -18,29 +18,29 @@
 <hr>
 <h3>
     <table border="1" cellpadding="10">
+    <tr>
+        <td>书号</td>
+        <td>书名</td>
+        <td>作者</td>
+        <td>价格</td>
+    </tr>
+    <s:iterator value="bookList" id="bL">
         <tr>
-            <td>书号</td>
-            <td>书名</td>
-            <td>作者</td>
-            <td>价格</td>
+            <td>
+                <s:property value="#bL.bookId"/>
+            </td>
+            <td>
+                <s:property value="#bL.title"/>
+            </td>
+            <td>
+                <s:property value="#bL.author"/>
+            </td>
+            <td>
+                <s:property value="#bL.price"/>
+            </td>
         </tr>
-        <s:iterator value="bookList" id="bL">
-            <tr>
-                <td>
-                    <s:property value="#bL.bookId"/>
-                </td>
-                <td>
-                    <s:property value="#bL.title"/>
-                </td>
-                <td>
-                    <s:property value="#bL.author"/>
-                </td>
-                <td>
-                    <s:property value="#bL.price"/>
-                </td>
-            </tr>
-        </s:iterator>
-    </table>
+    </s:iterator>
+</table>
 
     <%--书名：<s:property value="book.title"/><br>--%>
     <%--价格：<s:property value="book.price"/>--%>

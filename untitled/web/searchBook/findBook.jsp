@@ -45,6 +45,7 @@
                         <s:property value="#bL.price"/>
                     </td>
                     <td>
+                        <a href="showIntro.action?book.bookId=<s:property value="#bL.bookId"/>">简介</a>
                         <a href="../bookManage/modifyBook.jsp?bookId=<s:property value="#bL.bookId"/>&title=<s:property value="#bL.title"/>&author=<s:property value="#bL.author"/>&price=<s:property value="#bL.price"/>">修改</a>
                             <%--<a href="modifyBook.action?book.bookId=<s:property value="#bL.bookId"/>">修改</a>--%>
                         <a href="delete.action?book.bookId=<s:property value="#bL.bookId"/>"
