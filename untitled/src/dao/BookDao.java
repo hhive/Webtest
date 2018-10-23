@@ -17,7 +17,9 @@ public class BookDao {
     }
 
     public boolean add(Book book) {
-        String sql = "insert into book2 (bookId,title,author,price,intro) values ('" + book.getBookId() + "','" + book.getTitle() + "','" + book.getAuthor() + "','" + book.getPrice() + "','" + book.getIntro() + "')";
+        String sql = "insert into book2 (bookId,title,author,price,intro) values ('"
+                + book.getBookId() + "','" + book.getTitle() + "','" + book.getAuthor()
+                + "','" + book.getPrice() + "','" + book.getIntro() + "')";
         int rows = sqlSrvDBConn.executeUpdate(sql);
         sqlSrvDBConn.closeStmt();
         if (rows > 0)
@@ -28,7 +30,8 @@ public class BookDao {
     public boolean modify(Book book) {
         System.out.println("modify2");
         String sql = "update book2 set title = '" + book.getTitle()
-                + "',author = '" + book.getAuthor() + "',price = '" + book.getPrice() + "' where bookId = '" + book.getBookId() + "'";
+                + "',author = '" + book.getAuthor() + "',price = '"
+                + book.getPrice() + "',intro = '" +book.getIntro() + "' where bookId = '" + book.getBookId() + "'";
         int rows = sqlSrvDBConn.executeUpdate(sql);
         System.out.println(sql);
         sqlSrvDBConn.closeStmt();
@@ -71,6 +74,24 @@ public class BookDao {
         }
         sqlSrvDBConn.closeStmt();
         return bookList;
+    }
+    public Book findById(String title) {
+        Book book = null;
+        ArrayList<Book> bookList = new ArrayList<>();
+        String sql = "select * from book2 where bookId = '"
+                + title + "'"
+             ;
+        ResultSet rs = sqlSrvDBConn.executeQuery(sql);
+        try {
+            while (rs != null && rs.next()) {
+                book = new Book(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5));
+            }
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        sqlSrvDBConn.closeStmt();
+        return book;
     }
 
     public List<Book> findAll() {
@@ -127,21 +148,22 @@ public class BookDao {
             return false;
         }
     }
-    public String showIntro(String bookId) {
+    public Book showIntro(String bookId) {
         String intro = null;
-        String sql = "select intro from book2 where bookId = '"
+        Book book = null;
+        String sql = "select * from book2 where bookId = '"
                 + bookId + "'" ;
         ResultSet rs = sqlSrvDBConn.executeQuery(sql);
         try {
             while (rs != null && rs.next()) {
-                intro = rs.getString(1);
-                System.out.println(intro);
+                book = new Book(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5));
+
             }
             rs.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         sqlSrvDBConn.closeStmt();
-        return intro;
+        return book;
     }
 }

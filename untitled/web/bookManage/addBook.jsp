@@ -44,14 +44,18 @@
         <tr>
             <td>单价：</td>
             <td>
-                <input type="text" name="book.price" size="20">
-                <s:actionmessage/>
+                <input type="text" name="book.price" size="20"><br>
+                <s:if test="message != null">
+                    书籍价格必须大于10元
+                </s:if>
+               <%--<s:property value="message"/>--%>
+                <%--<s:actionmessage/>--%>
             </td>
         </tr>
         <tr>
             <td>简介：</td>
             <td>
-                <s:file name="upLoad" label="上传的文件"/>
+                <s:file name="upload" label="上传的文件"/>
             </td>
         </tr>
     </table>
