@@ -4,13 +4,11 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.BookDao;
 import model.Book;
-import org.apache.struts2.ServletActionContext;
+import model.Book2;
 import tool.Pager;
 
 import java.io.*;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 
 public class BookManageAction extends ActionSupport {
 
@@ -18,6 +16,23 @@ public class BookManageAction extends ActionSupport {
     List<Book> bookList;
     List<Book> allBookList;
     private String title;
+    private String message;
+    private File upload;
+    private String uploadFileName;
+    private boolean flag;
+    private Pager pager;
+    private int pageNow = 1;
+    private int pageSize = 8;
+
+    public Book2 getBook2() {
+        return book2;
+    }
+
+    public void setBook2(Book2 book2) {
+        this.book2 = book2;
+    }
+
+    private Book2 book2;
 
     public String getMessage() {
         return message;
@@ -27,8 +42,6 @@ public class BookManageAction extends ActionSupport {
         this.message = message;
     }
 
-    private String message;
-
     public String getUploadFileName() {
         return uploadFileName;
     }
@@ -36,8 +49,6 @@ public class BookManageAction extends ActionSupport {
     public void setUploadFileName(String uploadFileName) {
         this.uploadFileName = uploadFileName;
     }
-
-    private String uploadFileName;
 
     public File getUpload() {
         return upload;
@@ -47,8 +58,6 @@ public class BookManageAction extends ActionSupport {
         this.upload = upload;
     }
 
-    private File upload;
-
     public boolean isFlag() {
         return flag;
     }
@@ -57,8 +66,6 @@ public class BookManageAction extends ActionSupport {
         this.flag = flag;
     }
 
-    private boolean flag;
-
     public Pager getPager() {
         return pager;
     }
@@ -66,10 +73,6 @@ public class BookManageAction extends ActionSupport {
     public void setPager(Pager pager) {
         this.pager = pager;
     }
-
-    private Pager pager;
-    private int pageNow = 1;
-    private int pageSize = 8;
 
     public int getPageNow() {
         return pageNow;
@@ -112,44 +115,26 @@ public class BookManageAction extends ActionSupport {
     }
 
     public String addBook() {
-        System.out.println(book.getTitle());
+        System.out.println("book2.getTitle()" + book2.getTitle());
         try {
             if (getUpload() != null) {
                 System.out.println(getUploadFileName());
-
-                //BufferedInputStream bis = new BufferedInputStream(new FileInputStream(getUpload()));
-                String path = ServletActionContext.getServletContext().getRealPath("/bookIntro" + "\\" + uploadFileName);
-               // BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(path));
-
-//                StringBuffer buffer1 = new StringBuffer();
-//                BufferedReader bf= new BufferedReader(new FileReader(getUpload()));
-//                String s = null;
-//                while((s = bf.readLine())!=null){//使用readLine方法，一次读一行
-//                    buffer1.append(s.trim());
-//                }
-
+                if(true);
                 FileInputStream fis = new FileInputStream(getUpload());
                 OutputStream os = new FileOutputStream(
-                        "E:\\study\\Java EE\\try4\\untitled\\src\\resource\\bookIntro\\" + book.getBookId() + getUploadFileName());
+                        "E:\\study\\Java EE\\try4\\untitled\\src\\resource\\bookIntro\\" + book2.getBookId() + getUploadFileName());
                 byte[] buffer = new byte[fis.available()];
                 int count = 0;
                 while ((count = fis.read(buffer)) > 0) {
                     os.write(buffer, 0, count);
                 }
-//                for (byte x : buffer) {
-//                    System.out.println(x);
-//                }
-
-
-                book.setIntro(getUploadFileName());
-                System.out.println("intro:" + book.getIntro());
+                book2.setIntro(getUploadFileName());
+                System.out.println("intro:" + book2.getIntro());
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (new BookDao().add(book)) {
-//            String mes =  "成功添加书籍：" + book.getTitle() + "," + book.getAuthor() + "," + book.getPrice();
-//            ActionContext.getContext().getSession().put("mes",mes);
+        if (new BookDao().add(book2)) {
             flag = false;
             return "success";
         } else {
@@ -229,9 +214,9 @@ public class BookManageAction extends ActionSupport {
     }
 
     public String deleteBook() {
-        String theBookId = book.getBookId();
+        String theBookId = book2.getBookId();
 
-        if (new BookDao().delete(theBookId)) {
+        if (new BookDao().delete(book2)) {
             return "success";
         } else {
             return "error";

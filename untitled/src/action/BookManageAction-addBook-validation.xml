@@ -5,19 +5,19 @@
         "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
 
 <validators>
-    <field name="book.title">
+    <field name="book2.title">
         <field-validator type="requiredstring">
             <param name="trim">true</param>
             <message>书名不能为空!</message>
         </field-validator>
     </field>
-    <field name="book.bookId">
+    <field name="book2.bookId">
         <field-validator type="requiredstring">
             <param name="trim">true</param>
             <message>书号不能为空!</message>
         </field-validator>
     </field>
-    <field name="book.author">
+    <field name="book2.author">
         <field-validator type="requiredstring">
             <param name="trim">true</param>
             <message>作者不能为空!</message>

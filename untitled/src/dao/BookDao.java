@@ -1,31 +1,48 @@
 package dao;
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.ListIterator;
 import jdbc.SqlSrvDBConn;
 import model.Book;
+
+import model.Book2;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class BookDao {
     private SqlSrvDBConn sqlSrvDBConn;
+    private Session session;
+    private Transaction transaction;
 
     public BookDao() {
         sqlSrvDBConn = new SqlSrvDBConn();
+        Configuration configuration = new Configuration().configure();
+        SessionFactory sessionFactory = configuration.buildSessionFactory();
+        session = sessionFactory.openSession();
+        transaction = session.beginTransaction();
     }
 
-    public boolean add(Book book) {
-        String sql = "insert into book2 (bookId,title,author,price,intro) values ('"
-                + book.getBookId() + "','" + book.getTitle() + "','" + book.getAuthor()
-                + "','" + book.getPrice() + "','" + book.getIntro() + "')";
-        int rows = sqlSrvDBConn.executeUpdate(sql);
-        sqlSrvDBConn.closeStmt();
-        if (rows > 0)
-            return true;
-        else
-            return false;
+//    public boolean add(Book book) {
+//        String sql = "insert into book2 (bookId,title,author,price,intro) values ('"
+//                + book.getBookId() + "','" + book.getTitle() + "','" + book.getAuthor()
+//                + "','" + book.getPrice() + "','" + book.getIntro() + "')";
+//        int rows = sqlSrvDBConn.executeUpdate(sql);
+//        sqlSrvDBConn.closeStmt();
+//        if (rows > 0)
+//            return true;
+//        else
+//            return false;
+//    }
+    public boolean add (Book2 book2) {
+        System.out.println("add" + book2.getTitle());
+        session.save(book2);
+        transaction.commit();
+        session.close();
+        return true;
     }
     public boolean modify(Book book) {
         System.out.println("modify2");
@@ -56,6 +73,7 @@ public class BookDao {
     }
 
     public List<Book> find(String title, int PageNow, int PageSize) {
+
         Book book;
         ArrayList<Book> bookList = new ArrayList<>();
         String sql = "select * from book2 where title like '%"
@@ -138,15 +156,12 @@ public class BookDao {
         return allBookList;
     }
 
-    public boolean delete(String bookId) {
-        String sql = "delete from book2 where bookId = '"
-                + bookId + "'" ;
-        int row = sqlSrvDBConn.executeUpdate(sql);
-        if (row > 0) {
-            return true;
-        } else {
-            return false;
-        }
+    public boolean delete(Book2 book2) {
+        System.out.println("delete" + book2.getBookId());
+        session.delete(book2);
+        transaction.commit();
+        session.close();
+        return true;
     }
     public Book showIntro(String bookId) {
         String intro = null;

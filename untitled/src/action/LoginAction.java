@@ -3,7 +3,6 @@ package action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.UserDao;
-import model.Book;
 import model.User;
 
 import java.util.Map;

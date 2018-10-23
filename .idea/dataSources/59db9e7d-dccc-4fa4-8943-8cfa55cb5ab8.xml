@@ -1256,7 +1256,7 @@
     </column>
     <column id="312" parent="285" name="price">
       <Position>4</Position>
-      <DataType>varchar(255)|0s</DataType>
+      <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="313" parent="285" name="intro">

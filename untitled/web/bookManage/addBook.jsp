@@ -15,10 +15,10 @@
 <%--<s:fielderror name="book.title"/>--%>
 <%--<s:fielderror name="book.price"/>--%>
 <s:fielderror>
-    <s:param>book.title</s:param>
+    <s:param>book2.title</s:param>
 </s:fielderror>
 <s:fielderror>
-    <s:param>book.price</s:param>
+    <s:param>book2.price</s:param>
 </s:fielderror>
 <s:form action = "addBook" method="post" enctype="multipart/form-data">
     <table>
@@ -26,25 +26,25 @@
         <tr>
             <td>书号：</td>
             <td>
-                <input type="text" name="book.bookId" size="20">
+                <input type="text" name="book2.bookId" size="20">
             </td>
         </tr>
         <tr>
             <td>书名：</td>
             <td>
-                <input type="text" name="book.title" size="20">
+                <input type="text" name="book2.title" size="20">
             </td>
         </tr>
         <tr>
             <td>作者：</td>
             <td>
-                <input type="text" name="book.author" size="20">
+                <input type="text" name="book2.author" size="20">
             </td>
         </tr>
         <tr>
             <td>单价：</td>
             <td>
-                <input type="text" name="book.price" size="20"><br>
+                <input type="text" name="book2.price" size="20"><br>
                 <s:if test="message != null">
                     书籍价格必须大于10元
                 </s:if>
@@ -62,9 +62,9 @@
     <input type="submit" value="提交"/>
     <input type="reset" value="重置"/><br>
     <%--<s:property value="book.title"/><br>--%>
-    <s:if test="book.title != null&book.author != null&book.price >= 10">
+    <s:if test="book2.title != null&book2.author != null&book2.price >= 10">
         成功添加书籍：<br>
-      <s:property value="book.title"/>，<s:property value="book.author"/>,<s:property value="book.price"/>
+      <s:property value="book2.title"/>，<s:property value="book2.author"/>,<s:property value="book2.price"/>
     </s:if>
     <s:elseif test="flag == true">
         添加失败。
