@@ -4,6 +4,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.UserDao;
 import model.User;
+import model.User1;
 
 import java.util.Map;
 

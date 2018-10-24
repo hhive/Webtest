@@ -1,4 +1,4 @@
-<%@ page import="model.User" %>
+<%@ page import="model.User1" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@page pageEncoding="utf-8" %>
 <html>

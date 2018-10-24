@@ -20,7 +20,7 @@ public class BookManageAction extends ActionSupport {
     private String message;
     private File upload;
     private String uploadFileName;
-    private boolean flag;
+    private int flag = 1;
     private Pager pager;
     private int pageNow = 1;
     private int pageSize = 8;
@@ -59,11 +59,11 @@ public class BookManageAction extends ActionSupport {
         this.upload = upload;
     }
 
-    public boolean isFlag() {
+    public int isFlag() {
         return flag;
     }
 
-    public void setFlag(boolean flag) {
+    public void setFlag(int flag) {
         this.flag = flag;
     }
 
@@ -136,10 +136,10 @@ public class BookManageAction extends ActionSupport {
             e.printStackTrace();
         }
         if (new Book2Dao().add(book2)) {
-            flag = false;
+            flag = 1;
             return "success";
         } else {
-            flag = true;
+            flag = 2;
             book = null;
             return "error";
         }

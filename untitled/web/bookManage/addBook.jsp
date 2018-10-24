@@ -62,11 +62,11 @@
     <input type="submit" value="提交"/>
     <input type="reset" value="重置"/><br>
     <%--<s:property value="book.title"/><br>--%>
-    <s:if test="book2.title != null&book2.author != null&book2.price >= 10">
+    <s:if test="book2.title != null&book2.author != null&book2.price >= 10&flag == 1">
         成功添加书籍：<br>
       <s:property value="book2.title"/>，<s:property value="book2.author"/>,<s:property value="book2.price"/>
     </s:if>
-    <s:elseif test="flag == true">
+    <s:elseif test="flag == 2">
         添加失败。
     </s:elseif>
 </s:form>
