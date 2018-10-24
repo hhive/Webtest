@@ -185,7 +185,6 @@ public class BookManageAction extends ActionSupport {
 
     public String deleteBook() {
         String theBookId = book2.getBookId();
-
         if (new Book2Dao().delete(book2)) {
             return "success";
         } else {
