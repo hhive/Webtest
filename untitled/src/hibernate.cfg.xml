@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+    <property name="hibernate.connection.password">8888</property>
+    <property name="hibernate.connection.url">
+      jdbc:mysql://localhost:3306/webtest?useSSL=false&amp;serverTimezone=UTC&amp;characterEncoding=utf-8
+    </property>
+    <property name="hibernate.connection.username">root</property>
+    <!-- 数据源C3P0：数据库连接池 -->
+    <!--<property name="hibernate.connection.provider_class">org.hibernate.c3p0.internal.C3P0ConnectionProvider</property>-->
+
+    <!--注册当前session上下文：保证同一线程中获得的session是同一个session-->
+    <!--<property name="hibernate.current_session_context_class">thread</property>-->
+
+    <!--&lt;!&ndash; 自动建表 &ndash;&gt;-->
+    <!--<property name="hibernate.hbm2ddl.auto">update</property>-->
+
+    <!-- 显示SQL -->
+    <property name="hibernate.show_sql">true</property>
+
+    <!-- 格式化SQL -->
+    <property name="hibernate.format_sql">true</property>
+    <mapping class="model.User"/>
+    <mapping class="model.Book2"/>
+
+    <!-- 映射的持久化类 -->
+    <!--<mapping class="org.crazyit.app.domain.News"/>-->
+  </session-factory>
+</hibernate-configuration>

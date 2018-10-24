@@ -2,13 +2,14 @@ package action;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import dao.Book2Dao;
 import dao.BookDao;
 import model.Book;
+import model.Book2;
 import tool.Pager;
 
 import java.io.*;
 import java.util.List;
-import java.util.Map;
 
 public class BookManageAction extends ActionSupport {
 
@@ -16,26 +17,55 @@ public class BookManageAction extends ActionSupport {
     List<Book> bookList;
     List<Book> allBookList;
     private String title;
+    private String message;
+    private File upload;
+    private String uploadFileName;
+    private int flag = 1;
+    private Pager pager;
+    private int pageNow = 1;
+    private int pageSize = 8;
 
-    public File getUpLoad() {
-        return upLoad;
+    public Book2 getBook2() {
+        return book2;
     }
 
-    public void setUpLoad(File upLoad) {
-        this.upLoad = upLoad;
+    public void setBook2(Book2 book2) {
+        this.book2 = book2;
     }
 
-    private File upLoad;
+    private Book2 book2;
 
-    public boolean isFlag() {
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getUploadFileName() {
+        return uploadFileName;
+    }
+
+    public void setUploadFileName(String uploadFileName) {
+        this.uploadFileName = uploadFileName;
+    }
+
+    public File getUpload() {
+        return upload;
+    }
+
+    public void setUpload(File upload) {
+        this.upload = upload;
+    }
+
+    public int isFlag() {
         return flag;
     }
 
-    public void setFlag(boolean flag) {
+    public void setFlag(int flag) {
         this.flag = flag;
     }
-
-    private boolean flag;
 
     public Pager getPager() {
         return pager;
@@ -44,10 +74,6 @@ public class BookManageAction extends ActionSupport {
     public void setPager(Pager pager) {
         this.pager = pager;
     }
-
-    private Pager pager;
-    private int pageNow = 1;
-    private int pageSize = 8;
 
     public int getPageNow() {
         return pageNow;
@@ -90,44 +116,26 @@ public class BookManageAction extends ActionSupport {
     }
 
     public String addBook() {
-        System.out.println(book.getTitle());
-        try {
-            if (getUpLoad() != null) {
-                StringBuffer buffer1 = new StringBuffer();
-                BufferedReader bf= new BufferedReader(new FileReader(getUpLoad()));
-                String s = null;
-                while((s = bf.readLine())!=null){//使用readLine方法，一次读一行
-                    buffer1.append(s.trim());
-                }
-//                FileInputStream fis = new FileInputStream(getUpLoad());
-//                OutputStream os = new FileOutputStream("d:\\1.txt");
-//                byte[] buffer = new byte[fis.available()];
-//                int count = 0;
-//                while ((count = fis.read(buffer)) > 0) {
-//                    os.write(buffer, 0, count);
-//                }
-//                for (byte x : buffer) {
-//                    System.out.println(x);
-//                }
-                book.setIntro(buffer1.toString());
-                System.out.println("intro:" + book.getIntro());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        if (new BookDao().add(book)) {
-//            String mes =  "成功添加书籍：" + book.getTitle() + "," + book.getAuthor() + "," + book.getPrice();
-//            ActionContext.getContext().getSession().put("mes",mes);
-            flag = false;
+        System.out.println("book2.getTitle()" + book2.getTitle());
+        saveFile();
+        if (new Book2Dao().add(book2)) {
+            flag = 1;
             return "success";
         } else {
-            flag = true;
+            flag = 2;
             book = null;
             return "error";
         }
     }
     public String modifyBook() {
         System.out.println("modify1");
+        if (upload != null) {
+            System.out.println(new BookDao().findById(book.getBookId()).getIntro());
+            File file = new File("E:\\study\\Java EE\\try4\\untitled\\src\\resource\\bookIntro\\"
+                    + new BookDao().findById(book.getBookId()).getIntro());
+            file.delete();
+            saveFile();
+        }
         if (new BookDao().modify(book)) {
             return "success";
         } else {
@@ -169,16 +177,16 @@ public class BookManageAction extends ActionSupport {
             ActionContext.getContext().put("page", page);
         }
         if (0 != allBookList.size()) {
-                return "success";
-            } else {
-                return "error";
-            }
+            return "success";
+        } else {
+            return "error";
+        }
     }
 
     public String deleteBook() {
-        String theBookId = book.getBookId();
+        String theBookId = book2.getBookId();
 
-        if (new BookDao().delete(theBookId)) {
+        if (new Book2Dao().delete(book2)) {
             return "success";
         } else {
             return "error";
@@ -186,7 +194,39 @@ public class BookManageAction extends ActionSupport {
     }
     public String showIntro() {
         String theBookId = book.getBookId();
-        book.setIntro(new BookDao().showIntro(theBookId));
+        book = new BookDao().showIntro(theBookId);
+        try {
+            StringBuilder buffer = new StringBuilder();
+            BufferedReader bf = new BufferedReader(new FileReader
+                    ("E:\\study\\Java EE\\try4\\untitled\\src\\resource\\bookIntro\\" + book.getBookId() + book.getIntro()));
+            String s = null;
+            while ((s = bf.readLine()) != null) {//使用readLine方法，一次读一行
+                buffer.append(s.trim() + "\r\n");
+            }
+            book.setIntro(buffer.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return "success";
+    }
+
+    public void saveFile() {
+        try {
+            if (getUpload() != null) {
+                System.out.println(getUploadFileName());
+                FileInputStream fis = new FileInputStream(getUpload());
+                OutputStream os = new FileOutputStream(
+                        "E:\\study\\Java EE\\try4\\untitled\\src\\resource\\bookIntro\\" + book2.getBookId() + getUploadFileName());
+                byte[] buffer = new byte[fis.available()];
+                int count = 0;
+                while ((count = fis.read(buffer)) > 0) {
+                    os.write(buffer, 0, count);
+                }
+                book2.setIntro(getUploadFileName());
+                System.out.println("intro:" + book2.getIntro());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

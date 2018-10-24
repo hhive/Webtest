@@ -1,7 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<%@ page import="model.User" %><%--
+<%@ page import="model.User1" %><%--
   Created by IntelliJ IDEA.
-  User: JAX
+  User1: JAX
   Date: 2018/9/15
   Time: 12:45
   To change this template use File | Settings | File Templates.

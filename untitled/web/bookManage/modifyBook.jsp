@@ -15,7 +15,7 @@
     </h1>
 </head>
 <body>
-<s:form action = "modifyBook" method="post" validate="true">
+<s:form action = "modifyBook" method="post" enctype="multipart/form-data">
     <table>
     <tr>
         <td>书号：</td>
@@ -46,6 +46,12 @@
             <s:actionmessage/>
         </td>
     </tr>
+        <tr>
+            <td>简介：</td>
+            <td>
+                <s:file name="upload" label="上传的文件"/>
+            </td>
+        </tr>
     </table>
     <input type="submit" value="修改"/>
     <%--<s:if test="book.bookId != null">--%>

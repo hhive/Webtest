@@ -1,7 +1,7 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <%--Created by IntelliJ IDEA.--%>
-<%--User: JAX--%>
+<%--User1: JAX--%>
 <%--Date: 2018/9/15--%>
 <%--Time: 0:13--%>
 <%--To change this template use File | Settings | File Templates.--%>
