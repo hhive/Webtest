@@ -21,11 +21,11 @@
     <!--&lt;!&ndash; 自动建表 &ndash;&gt;-->
     <!--<property name="hibernate.hbm2ddl.auto">update</property>-->
 
-    <!--&lt;!&ndash; 显示SQL &ndash;&gt;-->
-    <!--<property name="hibernate.show_sql">true</property>-->
+    <!-- 显示SQL -->
+    <property name="hibernate.show_sql">true</property>
 
-    <!--&lt;!&ndash; 格式化SQL &ndash;&gt;-->
-    <!--<property name="hibernate.format_sql">true</property>-->
+    <!-- 格式化SQL -->
+    <property name="hibernate.format_sql">true</property>
     
     <mapping resource="model/Book2.hbm.xml"/>
     <mapping class="model.Book2"/>

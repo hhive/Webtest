@@ -15,35 +15,30 @@ import java.util.List;
 
 public class BookDao {
     private SqlSrvDBConn sqlSrvDBConn;
-    private Session session;
-    private Transaction transaction;
 
     public BookDao() {
         sqlSrvDBConn = new SqlSrvDBConn();
-        Configuration configuration = new Configuration().configure();
-        SessionFactory sessionFactory = configuration.buildSessionFactory();
-        session = sessionFactory.openSession();
-        transaction = session.beginTransaction();
+
     }
 
-//    public boolean add(Book book) {
-//        String sql = "insert into book2 (bookId,title,author,price,intro) values ('"
-//                + book.getBookId() + "','" + book.getTitle() + "','" + book.getAuthor()
-//                + "','" + book.getPrice() + "','" + book.getIntro() + "')";
-//        int rows = sqlSrvDBConn.executeUpdate(sql);
-//        sqlSrvDBConn.closeStmt();
-//        if (rows > 0)
-//            return true;
-//        else
-//            return false;
-//    }
-    public boolean add (Book2 book2) {
-        System.out.println("add" + book2.getTitle());
-        session.save(book2);
-        transaction.commit();
-        session.close();
-        return true;
+    public boolean add(Book book) {
+        String sql = "insert into book2 (bookId,title,author,price,intro) values ('"
+                + book.getBookId() + "','" + book.getTitle() + "','" + book.getAuthor()
+                + "','" + book.getPrice() + "','" + book.getIntro() + "')";
+        int rows = sqlSrvDBConn.executeUpdate(sql);
+        sqlSrvDBConn.closeStmt();
+        if (rows > 0)
+            return true;
+        else
+            return false;
     }
+//    public boolean add (Book2 book2) {
+//        System.out.println("add" + book2.getTitle());
+//        session.save(book2);
+//        transaction.commit();
+//        session.close();
+//        return true;
+//    }
     public boolean modify(Book book) {
         System.out.println("modify2");
         String sql = "update book2 set title = '" + book.getTitle()
@@ -156,13 +151,7 @@ public class BookDao {
         return allBookList;
     }
 
-    public boolean delete(Book2 book2) {
-        System.out.println("delete" + book2.getBookId());
-        session.delete(book2);
-        transaction.commit();
-        session.close();
-        return true;
-    }
+
     public Book showIntro(String bookId) {
         String intro = null;
         Book book = null;

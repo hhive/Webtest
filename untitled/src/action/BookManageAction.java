@@ -2,6 +2,7 @@ package action;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import dao.Book2Dao;
 import dao.BookDao;
 import model.Book;
 import model.Book2;
@@ -134,7 +135,7 @@ public class BookManageAction extends ActionSupport {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (new BookDao().add(book2)) {
+        if (new Book2Dao().add(book2)) {
             flag = false;
             return "success";
         } else {
@@ -216,7 +217,7 @@ public class BookManageAction extends ActionSupport {
     public String deleteBook() {
         String theBookId = book2.getBookId();
 
-        if (new BookDao().delete(book2)) {
+        if (new Book2Dao().delete(book2)) {
             return "success";
         } else {
             return "error";
