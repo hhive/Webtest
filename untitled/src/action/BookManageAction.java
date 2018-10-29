@@ -165,14 +165,14 @@ public class BookManageAction extends ActionSupport {
     }
 
     public String findAllToPage() {
-        int totalSize = new BookDao().findAll().size();
+        int totalSize = new Book2Dao().findAllSize();
         Pager page = new Pager(getPageNow(), totalSize);
         if (getPageNow() <= page.getTotalPage() && getPageNow() > 0) {
             //System.out.println(getPageNow());
-            allBookList = new BookDao().findAllTOPage(pageNow, pageSize);
+            allBookList = new Book2Dao().findAll(pageNow, pageSize);
             ActionContext.getContext().put("page", page);
         }else {
-            allBookList = new BookDao().findAllTOPage(1, pageSize);
+            allBookList = new Book2Dao().findAll(1, pageSize);
             page = new Pager(1, totalSize);
             ActionContext.getContext().put("page", page);
         }
