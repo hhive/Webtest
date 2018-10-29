@@ -4,7 +4,6 @@ import jdbc.SqlSrvDBConn;
 import model.User;
 import org.hibernate.query.Query;
 import tool.HibernateSessionFactory;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Iterator;

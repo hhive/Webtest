@@ -21,25 +21,25 @@
         <td>书号：</td>
         <td>
             <%--<c:set name="book.bookId" >v${param.bookId}</c:set>--%>
-        <input type="text" name="book.bookId" value="${param.bookId}<s:property value="book.bookId"/>" size="20" readonly="readonly">
+        <input type="text" name="book2.bookId" value="<s:property value="book2.bookId"/>" size="20" readonly="readonly">
         </td>
     </tr>
     <tr>
         <td>书名：</td>
         <td>
-        <input type="text" name="book.title" value="${param.title} <s:property value="book.title"/>" size="20">
+        <input type="text" name="book2.title" value=" <s:property value="book2.title"/>" size="20">
         </td>
     </tr>
     <tr>
         <td>作者：</td>
         <td>
-        <input type="text" name="book.author" value="${param.author}<s:property value="book.author"/>" size="20">
+        <input type="text" name="book2.author" value="<s:property value="book2.author"/>" size="20">
         </td>
     </tr>
         <tr>
         <td>单价：</td>
         <td>
-        <input type="text" name="book.price" value="${param.price}<s:property value="book.price"/>" size="20">
+        <input type="text" name="book2.price" value="<s:property value="book2.price"/>" size="20">
             <s:if test="hasActionMessages()">
                 你好
             </s:if>

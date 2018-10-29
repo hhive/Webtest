@@ -14,7 +14,7 @@ import java.util.List;
 public class BookManageAction extends ActionSupport {
 
     private Book book;
-    List<Book> bookList;
+    List bookList;
     List<Book> allBookList;
     private String title;
     private String message;
@@ -99,11 +99,11 @@ public class BookManageAction extends ActionSupport {
         this.book = book;
     }
 
-    public List<Book> getBookList() {
+    public List getBookList() {
         return bookList;
     }
 
-    public void setBookList(List<Book> bookList) {
+    public void setBookList(List bookList) {
         this.bookList = bookList;
     }
 
@@ -136,17 +136,17 @@ public class BookManageAction extends ActionSupport {
             file.delete();
             saveFile();
         }
-        if (new BookDao().modify(book)) {
+        if (new Book2Dao().modifyBook(book2)) {
             return "success";
         } else {
             return "error";
         }
     }
     public String findBook() {
-        int totalSize = new BookDao().findCount(title);
+        int totalSize = new Book2Dao().findSomeSize(title);
         System.out.println(totalSize);
         Pager page = new Pager(getPageNow(), totalSize);
-        bookList = new BookDao().find(title, pageNow, pageSize);
+        bookList = new Book2Dao().findSome(title, pageNow, pageSize);
         ActionContext.getContext().put("page", page);
         if (0 != bookList.size()) {
             return "success";
