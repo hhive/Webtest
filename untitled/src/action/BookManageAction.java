@@ -4,6 +4,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import dao.Book2Dao;
 import dao.BookDao;
+import model.Author;
 import model.Book;
 import model.Book2;
 import tool.Pager;
@@ -14,8 +15,9 @@ import java.util.List;
 public class BookManageAction extends ActionSupport {
 
     private Book book;
+    private Author author;
     List bookList;
-    List<Book> allBookList;
+    List allBookList;
     private String title;
     private String message;
     private File upload;
@@ -34,6 +36,15 @@ public class BookManageAction extends ActionSupport {
     }
 
     private Book2 book2;
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
 
     public String getMessage() {
         return message;
@@ -83,11 +94,11 @@ public class BookManageAction extends ActionSupport {
         this.pageNow = pageNow;
     }
 
-    public List<Book> getAllBookList() {
+    public List getAllBookList() {
         return allBookList;
     }
 
-    public void setAllBookList(List<Book> allBookList) {
+    public void setAllBookList(List allBookList) {
         this.allBookList = allBookList;
     }
 
@@ -115,10 +126,18 @@ public class BookManageAction extends ActionSupport {
         this.title = title;
     }
 
+    public void validate() {
+        System.out.println("BookManageAction validate()");
+    }
+
     public String addBook() {
-        System.out.println("book2.getTitle()" + book2.getTitle());
+    	System.out.println("book2.getTitle()" + book2.getTitle());
+//        System.out.println("author.name:" + author.getName());
+//        author.setName(book2.getAuthor().getName());
+//        author.setTel(book2.getAuthor().getTel());
+//        author.setEmail(book2.getAuthor().getEmail());
         saveFile();
-        if (new Book2Dao().add(book2)) {
+        if (new Book2Dao().add(book2, author)) {
             flag = 1;
             return "success";
         } else {
@@ -136,7 +155,7 @@ public class BookManageAction extends ActionSupport {
             file.delete();
             saveFile();
         }
-        if (new Book2Dao().modifyBook(book2)) {
+        if (new Book2Dao().modifyBook(book2,author)) {
             return "success";
         } else {
             return "error";

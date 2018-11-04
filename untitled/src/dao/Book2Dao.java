@@ -1,5 +1,6 @@
 package dao;
 
+import model.Author;
 import model.Book2;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -14,12 +15,13 @@ public class Book2Dao {
 
     }
 
-    public boolean add (Book2 book2) {
+    public boolean add (Book2 book2, Author author) {
         try{
             Session session = HibernateSessionFactory.getSession();
             Transaction transaction = session.beginTransaction();
-            System.out.println("add" + book2.getTitle());
+            book2.setAuthor(author);
             session.save(book2);
+            session.save(author);
             transaction.commit();
             session.close();
             return true;
@@ -44,12 +46,14 @@ public class Book2Dao {
         }
     }
 
-    public boolean modifyBook (Book2 book2) {
+    public boolean modifyBook (Book2 book2, Author author) {
         try {
             System.out.println("modifyBook" + book2.getBookId());
             Session session = HibernateSessionFactory.getSession();
             Transaction transaction = session.beginTransaction();
+            book2.setAuthor(author);
             session.update(book2);
+            session.update(author);
             transaction.commit();
             session.close();
             return true;
@@ -90,7 +94,7 @@ public class Book2Dao {
     public List findSome(String title, int pageNow, int pageSize) {
        try {
            String hql = "from Book2 where title like '%"
-                   + title + "%' or author like '%" + title + "%'";
+                   + title + "%' or author.name like '%" + title + "%'";
            Session session = HibernateSessionFactory.getSession();
            Transaction transaction = session.beginTransaction();
            Query query = session.createQuery(hql);
@@ -110,7 +114,7 @@ public class Book2Dao {
 
     public int findSomeSize(String title) {
         String hql = "from Book2 where title like '%"
-                + title + "%' or author like '%" + title + "%'";
+                + title + "%' or author.name like '%" + title + "%'";
         Session session = HibernateSessionFactory.getSession();
         Transaction transaction = session.beginTransaction();
         int size = session.createQuery(hql).list().size();
