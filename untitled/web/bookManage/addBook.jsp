@@ -35,12 +35,12 @@
                 <input type="text" name="book2.title" size="20">
             </td>
         </tr>
-        <tr>
-            <td>作者：</td>
-            <td>
-                <input type="text" name="book2.author" size="20">
-            </td>
-        </tr>
+        <%--<tr>--%>
+            <%--<td>作者：</td>--%>
+            <%--<td>--%>
+                <%--<input type="text" name="book2.author" size="20">--%>
+            <%--</td>--%>
+        <%--</tr>--%>
         <tr>
             <td>单价：</td>
             <td>
@@ -58,13 +58,31 @@
                 <s:file name="upload" label="上传的文件"/>
             </td>
         </tr>
+        <tr>
+            <td>作者姓名：</td>
+            <td>
+                <input type="text" name="author.name">
+            </td>
+        </tr>
+        <tr>
+        <td>作者电话：</td>
+        <td>
+            <input type="text" name="author.tel">
+        </td>
+        </tr>
+        <tr>
+        <td>作者邮箱：</td>
+        <td>
+            <input type="text" name="author.email">
+        </td>
+        </tr>
     </table>
     <input type="submit" value="提交"/>
     <input type="reset" value="重置"/><br>
     <%--<s:property value="book.title"/><br>--%>
-    <s:if test="book2.title != null&book2.author != null&book2.price >= 10&flag == 1">
+    <s:if test="book2.title != null&flag == 1">
         成功添加书籍：<br>
-      <s:property value="book2.title"/>，<s:property value="book2.author"/>,<s:property value="book2.price"/>
+      <s:property value="book2.title"/>，<s:property value="book2.author.name"/>,<s:property value="book2.price"/>
     </s:if>
     <s:elseif test="flag == 2">
         添加失败。

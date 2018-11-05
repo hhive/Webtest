@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="model.Book2" table="book2" schema="webtest">
+        <id name="bookId" column="bookId"/>
+        <many-to-one name="author"
+                     column="name"
+                     class="model.Author"
+                     cascade="all"
+                     fetch="join"
+                    lazy="false">
+        </many-to-one>
+        <property name="title" column="title"/>
+        <property name="price" column="price"/>
+        <property name="intro" column="intro"/>
+    </class>
+</hibernate-mapping>

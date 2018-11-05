@@ -30,12 +30,6 @@
         <input type="text" name="book2.title" value=" <s:property value="book2.title"/>" size="20">
         </td>
     </tr>
-    <tr>
-        <td>作者：</td>
-        <td>
-        <input type="text" name="book2.author" value="<s:property value="book2.author"/>" size="20">
-        </td>
-    </tr>
         <tr>
         <td>单价：</td>
         <td>
@@ -52,11 +46,29 @@
                 <s:file name="upload" label="上传的文件"/>
             </td>
         </tr>
+        <tr>
+            <td>作者：</td>
+            <td>
+                <input type="text" name="author.name" value="<s:property value="author.name"/>" size="20" >
+            </td>
+        </tr>
+        <tr>
+            <td>作者电话：</td>
+            <td>
+                <input type="text" name="author.tel" value="<s:property value="author.tel"/>">
+            </td>
+        </tr>
+        <tr>
+            <td>作者邮箱：</td>
+            <td>
+                <input type="text" name="author.email" value="<s:property value="author.email"/>">
+            </td>
+        </tr>
     </table>
     <input type="submit" value="修改"/>
-    <%--<s:if test="book.bookId != null">--%>
-        <%--修改成功。--%>
-    <%--</s:if>--%>
+    <s:if test="flag == 3">
+        修改成功。
+    </s:if>
 </s:form>
 <a href="findBook.action">继续查询</a>
 <a href="../main.jsp">返回主页</a>

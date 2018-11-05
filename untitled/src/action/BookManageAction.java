@@ -132,12 +132,9 @@ public class BookManageAction extends ActionSupport {
 
     public String addBook() {
     	System.out.println("book2.getTitle()" + book2.getTitle());
-//        System.out.println("author.name:" + author.getName());
-//        author.setName(book2.getAuthor().getName());
-//        author.setTel(book2.getAuthor().getTel());
-//        author.setEmail(book2.getAuthor().getEmail());
         saveFile();
-        if (new Book2Dao().add(book2, author)) {
+        book2.setAuthor(author);
+        if (new Book2Dao().add(book2)) {
             flag = 1;
             return "success";
         } else {
@@ -155,7 +152,9 @@ public class BookManageAction extends ActionSupport {
             file.delete();
             saveFile();
         }
-        if (new Book2Dao().modifyBook(book2,author)) {
+        book2.setAuthor(author);
+        if (new Book2Dao().modifyBook(book2)) {
+            flag = 3;
             return "success";
         } else {
             return "error";
@@ -168,8 +167,10 @@ public class BookManageAction extends ActionSupport {
         bookList = new Book2Dao().findSome(title, pageNow, pageSize);
         ActionContext.getContext().put("page", page);
         if (0 != bookList.size()) {
+
             return "success";
         } else {
+            flag = 5;
             return "error";
         }
     }

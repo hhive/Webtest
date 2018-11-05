@@ -15,13 +15,13 @@ public class Book2Dao {
 
     }
 
-    public boolean add (Book2 book2, Author author) {
+    public boolean add (Book2 book2) {
         try{
             Session session = HibernateSessionFactory.getSession();
             Transaction transaction = session.beginTransaction();
-            book2.setAuthor(author);
+
             session.save(book2);
-            session.save(author);
+//            session.save(author);
             transaction.commit();
             session.close();
             return true;
@@ -46,14 +46,14 @@ public class Book2Dao {
         }
     }
 
-    public boolean modifyBook (Book2 book2, Author author) {
+    public boolean modifyBook (Book2 book2) {
         try {
             System.out.println("modifyBook" + book2.getBookId());
             Session session = HibernateSessionFactory.getSession();
             Transaction transaction = session.beginTransaction();
-            book2.setAuthor(author);
+
             session.update(book2);
-            session.update(author);
+//            session.update(author);
             transaction.commit();
             session.close();
             return true;
@@ -94,13 +94,15 @@ public class Book2Dao {
     public List findSome(String title, int pageNow, int pageSize) {
        try {
            String hql = "from Book2 where title like '%"
-                   + title + "%' or author.name like '%" + title + "%'";
+                   + title + "%' or author.name like '%" + title + "%' or author.email =" + "'" + title + "'";
            Session session = HibernateSessionFactory.getSession();
            Transaction transaction = session.beginTransaction();
            Query query = session.createQuery(hql);
+
            int firstResult = (pageNow - 1) * pageSize;
            query.setFirstResult(firstResult);
            query.setMaxResults(pageSize);
+
            List list = query.list();
            transaction.commit();
            session.close();

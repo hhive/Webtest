@@ -17,12 +17,12 @@
             <message>书号不能为空!</message>
         </field-validator>
     </field>
-    <field name="book2.author">
-        <field-validator type="requiredstring">
-            <param name="trim">true</param>
-            <message>作者不能为空!</message>
-        </field-validator>
-    </field>
+    <!--<field name="book2.author">-->
+        <!--<field-validator type="requiredstring">-->
+            <!--<param name="trim">true</param>-->
+            <!--<message>作者不能为空!</message>-->
+        <!--</field-validator>-->
+    <!--</field>-->
     <!--<field name="book.price">-->
         <!--<field-validator type="int">-->
             <!--<param name="min">10</param>-->
