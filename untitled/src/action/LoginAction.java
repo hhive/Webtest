@@ -2,12 +2,7 @@ package action;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import dao.UserDao;
-import dao.daoImp.UserDaoImp;
-import model.Book;
 import model.User;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
 import service.UserService;
 
 import java.util.Map;
@@ -70,6 +65,15 @@ public class LoginAction extends ActionSupport {
         }
         return ERROR;
     }
+
+	public String logout() {
+		System.out.println("1");
+		ActionContext context = ActionContext.getContext();
+		Map<String, Object> session = context.getSession();
+		session.clear();
+		return INPUT;
+	}
+
 	public User getUser(){
 		return user;
 	}

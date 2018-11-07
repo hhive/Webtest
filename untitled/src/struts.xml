@@ -14,5 +14,38 @@
             <result name="success">main.jsp</result>
             <result name="error">index.jsp</result>
         </action>
+        <action name="addBook" class="book" method="addBook">
+            <result name="success">addBook.jsp</result>
+            <result name="error">addBook.jsp</result>
+            <result name="input">addBook.jsp</result>
+        </action>
+        <action name="modifyBook" class="book" method="modifyBook">
+            <result name="success">modifyBook.jsp</result>
+            <result name="error">modifyBook.jsp</result>
+            <result name="input">modifyBook.jsp</result>
+        </action>
+        <action name="findBook" class="book" method="findBook">
+            <result name="success">findBook.jsp</result>
+            <result name="error">findBook.jsp</result>
+            <result name="input">findBook.jsp</result>
+        </action>
+        <action name="findAllToPage" class="book" method="findAllToPage">
+            <result name="success">bookList.jsp</result>
+            <result name="error">bookListError.jsp</result>
+        </action>
+        <action name="delete" class="book" method="deleteBook">
+            <result name="success" type="redirectAction">
+                <param name="actionName">findAllToPage</param>
+            </result>
+        </action>
+        <action name="logout" class="login" method="logout">
+            <result name="input" type="dispatcher">
+                <param name="location">/index.jsp</param>
+            </result>
+            <!--<result name="input">/index.jsp</result>-->
+        </action>
+        <action name="showIntro" class="book" method="showIntro">
+            <result name="success">showIntro.jsp</result>
+        </action>
     </package>
 </struts>

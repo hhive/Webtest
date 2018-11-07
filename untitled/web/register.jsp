@@ -13,7 +13,7 @@
     <s:fielderror>
         <s:param>password</s:param>
     </s:fielderror>
-    <input type="submit" value="登录" />
+    <input type="submit" value="注册" />
     <input type="reset" value="重置" />
 </s:form>
 </body>
