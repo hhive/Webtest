@@ -4,9 +4,11 @@ import com.opensymphony.xwork2.ActionContext;
 import dao.Book2Dao;
 import model.Author;
 import model.Book2;
+import org.springframework.web.bind.annotation.RequestMapping;
 import service.BookService;
 import tool.Pager;
 
+import javax.xml.ws.RequestWrapper;
 import java.io.*;
 import java.util.List;
 
@@ -14,7 +16,6 @@ public class BookAction {
 
     private Author author;
     List bookList;
-    List allBookList;
     private String title;
     private File upload;
     private String uploadFileName;
@@ -90,14 +91,6 @@ public class BookAction {
         this.pageNow = pageNow;
     }
 
-    public List getAllBookList() {
-        return allBookList;
-    }
-
-    public void setAllBookList(List allBookList) {
-        this.allBookList = allBookList;
-    }
-
     public List getBookList() {
         return bookList;
     }
@@ -118,6 +111,7 @@ public class BookAction {
         System.out.println("BookManageAction validate()");
     }
 
+//    @RequestMapping(value = "/MyAdd")
     public String addBook() {
         System.out.println("book2.getTitle()" + book2.getTitle());
         saveFile();
@@ -167,14 +161,14 @@ public class BookAction {
         Pager page = new Pager(getPageNow(), totalSize);
         if (getPageNow() <= page.getTotalPage() && getPageNow() > 0) {
             //System.out.println(getPageNow());
-            allBookList = bookService.findAll(pageNow, pageSize);
+           bookList = bookService.findAll(pageNow, pageSize);
             ActionContext.getContext().put("page", page);
         }else {
-            allBookList = bookService.findAll(1, pageSize);
+            bookList = bookService.findAll(1, pageSize);
             page = new Pager(1, totalSize);
             ActionContext.getContext().put("page", page);
         }
-        if (0 != allBookList.size()) {
+        if (0 != bookList.size()) {
             return "success";
         } else {
             return "error";
@@ -227,5 +221,7 @@ public class BookAction {
             e.printStackTrace();
         }
     }
+
+
 
 }

@@ -25,7 +25,7 @@
         <td>邮箱</td>
         <td>操作</td>
     </tr>
-    <s:iterator value="allBookList" id="bL">
+    <s:iterator value="bookList" id="bL">
         <tr>
             <td>
                 <s:property value="#bL.bookId"/>

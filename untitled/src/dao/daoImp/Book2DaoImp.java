@@ -151,6 +151,7 @@ public class Book2DaoImp extends BaseDAO implements Book2Dao {
             Transaction transaction = session.beginTransaction();
             Query query = session.createQuery(hql);
             List Book2List = query.list();
+            session.close();
             return Book2List.size();
         } catch (Exception e) {
             e.printStackTrace();

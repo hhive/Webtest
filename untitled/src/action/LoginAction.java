@@ -35,6 +35,8 @@ public class LoginAction extends ActionSupport {
 			user1 = userService.validateUser(usr,pwd);
 			if(user1!=null){
 				session.put("user", user1);		//把 user1 对象存储在会话中
+				user = user1;
+				System.out.println(user.getRole());
 				validated=true;					//标识为 true 表示验证成功通过
 			}
 		}

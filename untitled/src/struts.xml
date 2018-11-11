@@ -47,5 +47,13 @@
         <action name="showIntro" class="book" method="showIntro">
             <result name="success">showIntro.jsp</result>
         </action>
+        <action name="showBookToLend" class="lendBook" method="showBookToLend">
+            <result name="success">showBookToLend.jsp</result>
+            <result name="error">main.jsp</result>
+        </action>
+        <action name="findBookToLend" class="lendBook" method="findBookToLend">
+            <result name="success">showBookToLend.jsp</result>
+            <result name="error">showBookToLend.jsp</result>
+        </action>
     </package>
 </struts>

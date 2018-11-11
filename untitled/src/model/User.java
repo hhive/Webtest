@@ -12,8 +12,9 @@ public class User {
     private String username;
     private String password;
     private int id;
-
+    private String role;
     public User() {}
+
     public User(String username, String password) {
         this.username = username;
         this.password = password;
@@ -64,5 +65,15 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(id, username, password);
+    }
+
+    @Basic
+    @Column(name = "role")
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
