@@ -4,14 +4,61 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import model.User;
 import service.UserService;
+import tool.Pager;
 
+import java.util.List;
 import java.util.Map;
 
 public class LoginAction extends ActionSupport {
     ActionContext context;
 	private User user;
+	private List userList;
+	private int pageNow = 1;
+	private int pageSize = 8;
+	private String title;
 
-    public UserService getUserService() {
+	public User getTmpUser() {
+		return tmpUser;
+	}
+
+	public void setTmpUser(User tmpUser) {
+		this.tmpUser = tmpUser;
+	}
+
+	private User tmpUser;
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public int getPageNow() {
+		return pageNow;
+	}
+
+	public void setPageNow(int pageNow) {
+		this.pageNow = pageNow;
+	}
+
+	public int getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	public List getUserList() {
+		return userList;
+	}
+
+	public void setUserList(List userList) {
+		this.userList = userList;
+	}
+
+	public UserService getUserService() {
         return userService;
     }
 
@@ -55,7 +102,7 @@ public class LoginAction extends ActionSupport {
 
 	}
 	public String register() {
-	    User u = new User(user.getUsername(),user.getPassword());
+	    User u = new User(user.getUsername(),user.getPassword(),user.getRole());
 	    User user1 = null;
 	    user1 = userService.registerUser(u);
 	    if(user1 != null) {
@@ -67,6 +114,13 @@ public class LoginAction extends ActionSupport {
         }
         return ERROR;
     }
+	public String addUser() {
+		User u = new User(user.getUsername(),user.getPassword(),user.getRole());//没有这行就无法插入，为什么？
+		if(userService.registerUser(u) != null) {
+			return SUCCESS;
+		}
+		return ERROR;
+	}
 
 	public String logout() {
 		System.out.println("1");
@@ -74,6 +128,49 @@ public class LoginAction extends ActionSupport {
 		Map<String, Object> session = context.getSession();
 		session.clear();
 		return INPUT;
+	}
+
+	public String findSomeUser() {
+		int totalSize = userService.findSomeSize(title);
+		System.out.println(totalSize);
+		Pager page = new Pager(getPageNow(), totalSize);
+		userList = userService.findSome(title, pageNow, pageSize);
+		ActionContext.getContext().put("page", page);
+		if (0 != userList.size()) {
+			return "success";
+		} else {
+//			flag = 5;
+			return "error";
+		}
+	}
+
+	public String findAllUser() {
+		int totalSize = userService.findAllSize();
+		Pager page = new Pager(getPageNow(), totalSize);
+			//System.out.println(getPageNow());
+		userList = userService.findAll(pageNow, pageSize);
+		ActionContext.getContext().put("page", page);
+		if (0 != userList.size()) {
+			return "success";
+		} else {
+			return "error";
+		}
+	}
+
+	public String modifyUser() {
+		if (userService.modify(tmpUser)) {
+			return "success";
+		} else {
+			return "error";
+		}
+	}
+
+	public String deleteUser() {
+		if (userService.delete(tmpUser)) {
+			return "success";
+		} else {
+			return "error";
+		}
 	}
 
 	public User getUser(){

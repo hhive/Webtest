@@ -18,7 +18,7 @@
                 <prop key="hibernate.show_sql">true</prop>
                 <!--<prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/webtest?useSSL=false&amp;serverTimezone=UTC&amp;characterEncoding=utf-8</prop>-->
                 <!--<prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>-->
-                <prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/webtest?useSSL=false&amp;serverTimezone=UTC&amp;characterEncoding=utf-8</prop>
+                <prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/webtest</prop>
                 <prop key="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</prop>
             </props>
         </property>
@@ -27,6 +27,7 @@
                 <value>model.User</value>
                 <value>model.Author</value>
                 <value>model.Book2</value>
+                <value>model.Lend</value>
             </list>
         </property>
         <property name="mappingLocations">
@@ -66,6 +67,11 @@
         </property>
     </bean>
 
+    <bean id="lendDao" class="dao.daoImp.LendDaoImp" parent="baseDAO"/>
+    <bean id="lendService" class="service.serviceImp.LendServiceImp">
+        <property name="lendDao" ref="lendDao"/>
+    </bean>
     <bean id="lendBook" class="action.lendAction" parent="book">
+        <property name="lendService" ref="lendService"/>
     </bean>
 </beans>

@@ -1366,7 +1366,7 @@
     </column>
     <column id="335" parent="291" name="role">
       <Position>4</Position>
-      <DataType>enum(&apos;读者&apos;, &apos;管理员&apos;)|0e</DataType>
+      <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <key id="336" parent="291" name="PRIMARY">

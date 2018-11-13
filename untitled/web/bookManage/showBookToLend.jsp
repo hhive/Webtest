@@ -54,13 +54,17 @@
                     </td>
                     <td>
                         <a href="showIntro.action?book2.bookId=<s:property value="#bL.bookId"/>&book2.intro=<s:property value="#bL.intro"/>">简介</a>
-                        <a href="modifyBook.action?book2=<s:property value="#bL"/>">借书</a>
+                        <a href="borrowBook.action?lend.isbn=<s:property value="#bL.bookId"/>&message=<s:property value="#bL.title" />">借书</a>
                             <%--<a href="modifyBook.action?book.bookId=<s:property value="#bL.bookId"/>">修改</a>--%>
                     </td>
                 </tr>
             </s:iterator>
         </table>
     </s:if>
+    <s:if test="message!=null&flag==1">
+        借书成功：<s:property value="message"/>
+    </s:if>
+
 </s:form>
 <s:div>
 <s:set name="page" value="#page"/>

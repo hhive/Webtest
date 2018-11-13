@@ -18,7 +18,6 @@ public class Book2DaoImp extends BaseDAO implements Book2Dao {
         try{
             Session session = getSessionFactory().openSession();
             Transaction transaction = session.beginTransaction();
-
             session.save(book2);
 //            session.save(author);
             transaction.commit();
@@ -63,7 +62,7 @@ public class Book2DaoImp extends BaseDAO implements Book2Dao {
 
     public List findAll(int pageNow, int pageSize) {
         try {
-            String hql = "from Book2";
+            String hql = "from Book2 where bookId not in (select isbn from Lend)";
             Session session = getSessionFactory().openSession();
             Transaction transaction = session.beginTransaction();
             Query query = session.createQuery(hql);

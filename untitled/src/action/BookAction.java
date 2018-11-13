@@ -24,6 +24,7 @@ public class BookAction {
     private int pageNow = 1;
     private int pageSize = 8;
 
+
     public BookService getBookService() {
         return bookService;
     }
@@ -222,6 +223,8 @@ public class BookAction {
         }
     }
 
-
+    public String getBookId() {
+        return book2.getBookId();
+    }
 
 }
