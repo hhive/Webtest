@@ -55,7 +55,8 @@
                     <td>
                         <a href="showIntro.action?book2.bookId=<s:property value="#bL.bookId"/>&book2.intro=<s:property value="#bL.intro"/>">简介</a>
                         <a href="modifyBook.action?book2.bookId=<s:property value="#bL.bookId"/>&book2.title=<s:property value="#bL.title"/>
-                        &author.name=<s:property value="#bL.author.name"/>&book2.price=<s:property value="#bL.price"/>&author.tel=<s:property value="#bL.author.tel"/>&author.email=<s:property value="#bL.author.email"/>">修改</a>
+                        &author.name=<s:property value="#bL.author.name"/>&book2.price=<s:property value="#bL.price"/>&author.tel=<s:property value="#bL.author.tel"/>
+                        &author.email=<s:property value="#bL.author.email"/>">修改</a>
                             <%--<a href="modifyBook.action?book.bookId=<s:property value="#bL.bookId"/>">修改</a>--%>
                         <a href="delete.action?book2.bookId=<s:property value="#bL.bookId"/>&author.name=<s:property value="#bL.author.name"/>"
                            onclick="if(!confirm('确定删除这本书吗？'))return false;else return true;">删除</a>

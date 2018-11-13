@@ -34,27 +34,27 @@
             <result name="error">userManage/manageUser.jsp</result>
         </action>
         <action name="addBook" class="book" method="addBook">
-            <result name="success">bookManage/addBook.jsp</result>
-            <result name="error">bookManage/addBook.jsp</result>
-            <result name="input">bookManage/addBook.jsp</result>
+            <result name="success">/bookManage/addBook.jsp</result>
+            <result name="error">/bookManage/addBook.jsp</result>
+            <result name="input">/bookManage/addBook.jsp</result>
         </action>
         <action name="modifyBook" class="book" method="modifyBook">
-            <result name="success">bookManage/modifyBook.jsp</result>
-            <result name="error">bookManage/modifyBook.jsp</result>
-            <result name="input">bookManage/modifyBook.jsp</result>
+            <result name="success">/bookManage/modifyBook.jsp</result>
+            <result name="error">/bookManage/modifyBook.jsp</result>
+            <result name="input">/bookManage/modifyBook.jsp</result>
         </action>
         <action name="findBook" class="book" method="findBook">
-            <result name="success">bookManage/findBook.jsp</result>
-            <result name="error">bookManage/findBook.jsp</result>
-            <result name="input">bookManage/findBook.jsp</result>
+            <result name="success">/bookManage/findBook.jsp</result>
+            <result name="error">/bookManage/findBook.jsp</result>
+            <result name="input">/bookManage/findBook.jsp</result>
         </action>
         <action name="findAllToPage" class="book" method="findAllToPage">
-            <result name="success">bookManage/bookList.jsp</result>
-            <result name="error">bookManage/bookListError.jsp</result>
+            <result name="success">/bookManage/bookList.jsp</result>
+            <result name="error">/bookManage/bookListError.jsp</result>
         </action>
         <action name="delete" class="book" method="deleteBook">
             <result name="success" type="redirectAction">
-                <param name="actionName">findAllToPage</param>
+                <param name="actionName">findBook</param>
             </result>
         </action>
         <action name="logout" class="login" method="logout">
@@ -64,7 +64,7 @@
             <!--<result name="input">/index.jsp</result>-->
         </action>
         <action name="showIntro" class="book" method="showIntro">
-            <result name="success">bookManage/showIntro.jsp</result>
+            <result name="success">/bookManage/showIntro.jsp</result>
         </action>
         <action name="showBookToLend" class="lendBook" method="showBookToLend">
             <result name="success">bookManage/showBookToLend.jsp</result>

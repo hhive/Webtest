@@ -83,7 +83,7 @@ public class Book2DaoImp extends BaseDAO implements Book2Dao {
     }
 
     public int findAllSize() {
-        String hql = "from Book2";
+        String hql = "from Book2 where bookId not in (select isbn from Lend)";
         Session session = getSessionFactory().openSession();;
         Transaction transaction = session.beginTransaction();
         int size = session.createQuery(hql).list().size();

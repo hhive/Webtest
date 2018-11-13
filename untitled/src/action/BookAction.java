@@ -186,9 +186,10 @@ public class BookAction {
     }
 
     public String showIntro() {
+        StringBuilder buffer = new StringBuilder();
         try {
             System.out.println(book2.getBookId() + book2.getIntro());
-            StringBuilder buffer = new StringBuilder();
+            buffer = new StringBuilder();
             BufferedReader bf = new BufferedReader(new FileReader
                     ("E:\\study\\Java EE\\test9\\untitled\\src\\resource\\bookIntro\\" + book2.getBookId() + book2.getIntro()));
 
@@ -198,6 +199,8 @@ public class BookAction {
             }
             book2.setIntro(buffer.toString());
         } catch (IOException e) {
+            buffer.append("没有简介...");
+            book2.setIntro(buffer.toString());
             e.printStackTrace();
         }
         return "success";

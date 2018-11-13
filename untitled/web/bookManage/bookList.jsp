@@ -46,10 +46,10 @@
                 <s:property value="#bL.author.email"/>
             </td>
             <td>
-                <a href="showIntro.action?book2.bookId=<s:property value="#bL.bookId"/>">简介</a>
+                <a href="showIntro.action?book2.bookId=<s:property value="#bL.bookId"/>&book2.intro=<s:property value="#bL.intro"/>">简介</a>
                 <%--<a href="modifyBook.action?bookId=<s:property value="#bL.bookId"/>&title=<s:property value="#bL.title"/>&author=<s:property value="#bL.author"/>&price=<s:property value="#bL.price"/>">修改</a>--%>
                     <a href="modifyBook.action?book2.bookId=<s:property value="#bL.bookId"/>&book2.title=<s:property value="#bL.title"/>&book2.author=<s:property value="#bL.author"/>&book2.price=<s:property value="#bL.price"/>
-                    &author.name=<s:property value="#bL.author.name"/>&author.tel=<s:property value="#bL.author.tel"/>&author.email=<s:property value="#bL.author.email"/>">修改</a>
+                   &author.name=<s:property value="#bL.author.name"/>&author.tel=<s:property value="#bL.author.tel"/>&author.email=<s:property value="#bL.author.email"/>">修改</a>
                     <%--<a href="modifyBook.action?book.bookId=<s:property value="#bL.bookId"/>">修改</a>--%>
                 <a href="delete.action?book2.bookId=<s:property value="#bL.bookId"/>"
                    onclick="if(!confirm('确定删除这本书吗？'))return false;else return true;">删除</a>
@@ -80,7 +80,7 @@
     </form>
 </s:div><br><br>
 <a href="../main.jsp">返回主页</a>
-<s:debug/>
+<%--<s:debug/>--%>
 </body>
 <script type="text/javascript">
     function validate() {
