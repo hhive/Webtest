@@ -21,8 +21,8 @@
 <hr>
 <s:if test="#session.user.role == '管理员'">
 	<ol type="1" start="1">
-		<li><a href="userManage/addUser.jsp">添加用户</a> </li>
-		<li><a href="findAllUser.action">管理用户</a> </li>
+		<li><a href="userManage/addUser.jsp?message=<s:property value=""/>">添加用户</a> </li>
+		<li><a href="findAllUser.action?message=<s:property value=""/>">管理用户</a> </li>
 		<li><a href="bookManage/addBook.jsp">添加图书</a></li>
 		<li><a href="bookManage/findBook.jsp">查询图书</a></li>
 		<li><a href="findAllToPage.action?pageNow=1">浏览图书</a></li>

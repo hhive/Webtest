@@ -39,9 +39,7 @@
         </tr>
     </table>
     <input type="submit" value="修改"/>
-    <s:if test="flag == 3">
-        修改成功。
-    </s:if>
+    <s:property value="message"/>
 </s:form>
 <a href="findAllUser.action ">继续查询</a>
 <a href="../main.jsp">返回主页</a>

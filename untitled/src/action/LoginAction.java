@@ -16,6 +16,15 @@ public class LoginAction extends ActionSupport {
 	private int pageNow = 1;
 	private int pageSize = 8;
 	private String title;
+	private  String message;
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
 
 	public User getTmpUser() {
 		return tmpUser;
@@ -115,10 +124,12 @@ public class LoginAction extends ActionSupport {
         return ERROR;
     }
 	public String addUser() {
-		User u = new User(user.getUsername(),user.getPassword(),user.getRole());//没有这行就无法插入，为什么？
-		if(userService.registerUser(u) != null) {
+		//User u = new User(user.getUsername(),user.getPassword(),user.getRole());//没有这行就无法插入，为什么？
+		if(userService.registerUser(tmpUser) != null) {
+			message = "添加成功";
 			return SUCCESS;
 		}
+		message = "添加失败";
 		return ERROR;
 	}
 
@@ -159,16 +170,20 @@ public class LoginAction extends ActionSupport {
 
 	public String modifyUser() {
 		if (userService.modify(tmpUser)) {
+			message = "修改成功";
 			return "success";
 		} else {
+			message = "修改失败";
 			return "error";
 		}
 	}
 
 	public String deleteUser() {
 		if (userService.delete(tmpUser)) {
+			message = "删除成功";
 			return "success";
 		} else {
+			message = "删除失败";
 			return "error";
 		}
 	}

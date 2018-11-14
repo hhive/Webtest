@@ -41,11 +41,17 @@
                         <s:property value="#tmpUser.role"/>
                     </td>
                     <td>
+                        <s:if test="#tmpUser.role!='管理员'.toString()">
                         <a href="modifyUser.action?tmpUser.username=<s:property value="#tmpUser.username"/>&tmpUser.password=<s:property value="#tmpUser.password"/>
                         &tmpUser.role=<s:property value="#tmpUser.role"/>">修改</a>
+                            <a href="deleteUser.action?tmpUser.username=<s:property value="#tmpUser.username"/>&tmpUser.password=<s:property value="#tmpUser.password"/>"
+                               onclick="if(!confirm('确定删除这本书吗？'))return false;else return true;">删除</a>
+                        </s:if>
+                        <s:else>
+                            无法操作
+                        </s:else>
                             <%--<a href="modifyBook.action?book.bookId=<s:property value="#bL.bookId"/>">修改</a>--%>
-                        <a href="deleteUser.action?tmpUser.username=<s:property value="#tmpUser.username"/>&tmpUser.password=<s:property value="#tmpUser.password"/>"
-                           onclick="if(!confirm('确定删除这本书吗？'))return false;else return true;">删除</a>
+
                     </td>
                 </tr>
             </s:iterator>
@@ -72,9 +78,8 @@
     <a href="findBook.action?title=<s:property value="title"/>&pageNow=<s:property value="#page.totalPage"/>">尾页</a>
     </s:if><br>
     </s:div><br><br>
-    <s:if test="flag == 5">
-    没有相关数据
-    </s:if><br>
+        <s:property value="message"/><br>
+
     <a href="findAllToPage.action?pageNow=1">查询全部</a>
     <a href="../main.jsp">返回主页</a>
 </body>

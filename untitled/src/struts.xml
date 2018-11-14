@@ -15,23 +15,23 @@
             <result name="error">index.jsp</result>
         </action>
         <action name="addUser" class="login" method="addUser">
-            <result name="success">userManage/addUser.jsp</result>
+            <result name="success">/userManage/addUser.jsp</result>
         </action>
         <action name="findAllUser" class="login" method="findAllUser">
-            <result name="success">userManage/manageUser.jsp</result>
-            <result name="error">userManage/manageUser.jsp</result>
+            <result name="success">/userManage/manageUser.jsp</result>
+            <result name="error">/userManage/manageUser.jsp</result>
         </action>
         <action name="findSomeUser" class="login" method="findSomeUser">
-            <result name="success">userManage/manageUser.jsp</result>
+            <result name="success">/userManage/manageUser.jsp</result>
             <result name="error">userManage/manageUser.jsp</result>
         </action>
         <action name="modifyUser" class="login" method="modifyUser">
             <result name="success">userManage/modifyUser.jsp</result>
-            <result name="error">userManage/modifyUser.jsp</result>
+            <result name="error">/userManage/modifyUser.jsp</result>
         </action>
         <action name="deleteUser" class="login" method="deleteUser">
             <result name="success" type="redirectAction">findAllUser</result>
-            <result name="error">userManage/manageUser.jsp</result>
+            <result name="error">/userManage/manageUser.jsp</result>
         </action>
         <action name="addBook" class="book" method="addBook">
             <result name="success">/bookManage/addBook.jsp</result>
@@ -67,18 +67,18 @@
             <result name="success">/bookManage/showIntro.jsp</result>
         </action>
         <action name="showBookToLend" class="lendBook" method="showBookToLend">
-            <result name="success">bookManage/showBookToLend.jsp</result>
+            <result name="success">/bookManage/showBookToLend.jsp</result>
             <result name="error">main.jsp</result>
         </action>
         <action name="findBookToLend" class="lendBook" method="findBookToLend">
-            <result name="success">bookManage/showBookToLend.jsp</result>
+            <result name="success">/bookManage/showBookToLend.jsp</result>
             <result name="error">bookManage/showBookToLend.jsp</result>
         </action>
         <action name="borrowBook" class="lendBook" method="borrowBook">
             <result name="success" type="redirectAction">showBookToLend</result>
         </action>
         <action name="showBorrowBook" class="lendBook" method="showBorrowBook">
-            <result name="success">bookManage/reBackBook.jsp</result>
+            <result name="success">/bookManage/reBackBook.jsp</result>
             <result name="error">main.jsp</result>
         </action>
         <action name="reBackBook" class="lendBook" method="reBackBook">
